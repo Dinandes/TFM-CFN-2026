@@ -1,5 +1,5 @@
 /* Service Worker — Estudos TFM CGCFN-108 */
-const CACHE = "tfm-cfn-2026-v1";
+const CACHE = "tfm-cfn-2026-v2";
 const BASE = "/TFM-CFN-2026/";
 const ASSETS = [
   BASE,
