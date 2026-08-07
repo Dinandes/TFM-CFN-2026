@@ -1,0 +1,28 @@
+{
+  "name": "Estudos TFM — CGCFN-108",
+  "short_name": "TFM CFN 2026",
+  "description": "App de estudos do Treinamento Físico Militar (TFM) da Marinha do Brasil / Corpo de Fuzileiros Navais, baseado na CGCFN-108. Resumos, mapa mental, flashcards e vários tipos de questões.",
+  "start_url": "/TFM-CFN-2026/",
+  "scope": "/TFM-CFN-2026/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1628",
+  "theme_color": "#0a1628",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "/TFM-CFN-2026/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/TFM-CFN-2026/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

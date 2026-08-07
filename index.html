@@ -1,0 +1,1769 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a1628" />
+  <title>Estudos TFM — CGCFN-108</title>
+  <link rel="manifest" href="/TFM-CFN-2026/manifest.json" />
+  <link rel="icon" href="/TFM-CFN-2026/icon-192.png" />
+  <link rel="apple-touch-icon" href="/TFM-CFN-2026/icon-192.png" />
+  <style>
+    * { -webkit-tap-highlight-color: transparent; }
+    html, body { margin: 0; padding: 0; background: #0a1628; }
+    #root { min-height: 100vh; }
+    ::-webkit-scrollbar { height: 6px; width: 6px; }
+    ::-webkit-scrollbar-thumb { background: #1f3a5c; border-radius: 3px; }
+  </style>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" data-presets="react">
+/* ==========================================================================
+   BANCO DE CONTEÚDO — TFM / CGCFN-108 (Marinha do Brasil / CFN)
+   Todo o conteúdo é extraído 100% dos arquivos enviados:
+   - Aulas_tudo_junto.pdf
+   - QUESTIONARIO_TFM.pdf (direcionamento do professor)
+   ========================================================================== */
+
+/* ---------- SUPER RESUMO (tópicos rápidos) ---------- */
+const SUPER_RESUMO = [
+  {
+    bloco: "1. Segurança e Higiene",
+    itens: [
+      "Saúde = completo bem-estar físico e mental (não só ausência de doença).",
+      "Militar deve estar APTO na Inspeção de Saúde para cumprir o TFM.",
+      "TFM em local que evite acidentes e com ventilação adequada.",
+      "Pré-TAF-a: anualmente até 31/03 (divide turmas e dimensiona a carga).",
+      "Horário: de preferência pela manhã; senão, 2h após grandes refeições.",
+      "Não treinar em jejum → hipoglicemia e desmaios.",
+      "Refeição leve 30 min antes. Hidratar: 35 mL por kg de peso corporal.",
+      "Força com segurança: técnica correta, não exceder o peso prescrito, respiração correta.",
+      "Manobra de Valsalva = bloqueio da respiração → aumenta a pressão arterial.",
+      "Benefícios do aquecimento: reduz viscosidade sanguínea, lubrifica articulações, estimula o sistema energético.",
+    ],
+  },
+  {
+    bloco: "2. Princípios do Treinamento",
+    itens: [
+      "São 6: Individualidade, Adaptação, Sobrecarga, Interdependência V×I, Continuidade, Especificidade.",
+      "Individualidade Biológica: Genótipo + Fenótipo; mesmo treino = efeitos diferentes.",
+      "Adaptação: Treino → Estímulo → Adaptação metabólica e fisiológica.",
+      "Sobrecarga: impor estresse crescente (aumentar volume OU intensidade).",
+      "Interdependência V×I: volume e intensidade são inversamente proporcionais.",
+      "Continuidade: efeitos são transitórios e reversíveis (revertem com inatividade).",
+      "Especificidade: efeitos específicos para o que é solicitado (correr para corrida etc.).",
+      "Aeróbio: 15 a 60 min; intensidade 55 a 90% da FC máxima; FC é ótimo parâmetro.",
+    ],
+  },
+  {
+    bloco: "3. Treinamento Cardiovascular",
+    itens: [
+      "Conceito: predominância do sistema energético aeróbio.",
+      "Aeróbico (3.6): corrida, natação, ciclismo, lutas — 20 a 60 min.",
+      "Corrida: pelo menos 2x/semana. Natação: 2x/semana, dias não consecutivos, mínimo 500 m.",
+      "FC: medir 15 s em repouso × 4 = BPM. FCM = 220 − idade.",
+      "Método CONTÍNUO (predomínio do volume): Fartlek (40–120 min) e Cross-promenade (mín. 3 km, 40–90 min).",
+      "Método INTERVALADO: tiros/arrancadas; até 5 min; 10 a 60 rep; recuperação incompleta.",
+      "Método FRACIONADO: 2º estímulo após recuperação quase total do 1º.",
+      "Benefícios: reduz gordura, reduz PA e riscos cardíacos, usa mais gordura como energia, aumenta economia de movimento.",
+    ],
+  },
+  {
+    bloco: "4. Treinamento de Força",
+    itens: [
+      "Força = resistência aplicada ao sistema neuromuscular.",
+      "Tipos: Pura (movimentos acíclicos), Dinâmica (massa muscular), Explosiva (potência), RML (tônus/resistência).",
+      "Métodos: Circuito, TRM, Funcional, Musculação.",
+      "Circuito: 6 a 15 estações, alternar braço/perna, 1 a 3 voltas, 2 a 3x/semana.",
+      "TRM: básico (peso corporal/companheiro) e avançado (barras, anilhas, toros, fuzil); 3 fases; repetição ternária (1,2,3,0).",
+      "Funcional: princípio da instabilidade mecânica → estímulo sensório-motor.",
+      "Musculação: treino de força em sala de equipamentos.",
+    ],
+  },
+  {
+    bloco: "5. Ginástica Preparatória e Condução",
+    itens: [
+      "Sessão (cap 3): aquecimento articular, alongamento, aquecimento dos grupos musculares, aeróbico, neuromusculares, volta à calma.",
+      "Ginástica Preparatória visa o aquecimento propriamente dito.",
+      "Alongamento inicial: passivo/estático, ~10 min → aquecimento articular + alongamento prévio muscular.",
+      "Aquecimento articular: de baixo para cima; unilateral começando pela ESQUERDA; ~8 giros lentos.",
+      "Volta à calma: 5 a 15 min; 30 s a 1 min por grupamento muscular.",
+      "Critérios de condução: Uniforme, Postura, Voz de comando, Ser claro, Segurança.",
+      "Usar: afastar, aproximar, flexionar, estender. Evitar: abrir, fechar, dobrar.",
+      "Vocativos: 'Permissão para iniciar…' / 'Pronto da Ginástica Preparatória Básica'.",
+    ],
+  },
+  {
+    bloco: "6. Legislação (TAF-A) e Aspecto Militar",
+    itens: [
+      "TFM diário; excepcionalmente no mínimo 3x/semana (1.2.3).",
+      "Comandante/Diretor responsável pela higidez física (1.2.11).",
+      "50 anos ou mais: desobrigados do TAF-a (1.2.12).",
+      "TAF-a até 20 de outubro (5.2.1). Local: pista/área plana + piscina de 50 ou 25 m.",
+      "Modalidades CFN em 3 dias não consecutivos: corrida, natação, permanência na água, barra/flexão, abdominal.",
+      "Impedimento: realiza quando o motivo cessar; resultado retroativo à data do teste regular.",
+      "CFN envia por ofício ao CPesFN até 31/10, com cópia ao CEFAN (5.7.2).",
+      "Aspecto Militar (composição corporal): avaliado em set/out; 'insuficiente' → MSG ao CEFAN até 31OUT + imersão de 2 semanas.",
+    ],
+  },
+];
+
+/* ---------- RESUMO COMPLETO POR BLOCOS ---------- */
+const RESUMO_BLOCOS = [
+  {
+    titulo: "Bloco 1 — Segurança e Higiene",
+    paragrafos: [
+      "O papel do TFM: a melhoria da aptidão física aumenta a prontidão para o combate; indivíduos aptos são mais resistentes a doenças e se recuperam mais rápido de lesões.",
+      "Conceito atual de saúde (2.2): completo bem-estar físico e mental — não apenas ausência de enfermidade. O programa de treino deve buscar força muscular, resistência aeróbica, flexibilidade e manutenção da composição corporal adequada à massa e à idade.",
+      "Realização do TFM: os militares devem estar APTOS nas Inspeções de Saúde (1.2.6). O TFM deve ocorrer em local que evite acidentes e com ventilação adequada (1.2.7). Anualmente, até 31/03, todas as OM efetuam o Pré-TAF-a, cujos resultados dividem os militares por turmas e dimensionam a carga (1.2.10). O horário é, de preferência, pela manhã; quando não for possível, deve iniciar cerca de 2h após as principais refeições (almoço e jantar) (1.2.8). Em temperaturas muito baixas ou elevadas, treinar nos horários de temperatura amena, atentando também à umidade relativa do ar.",
+      "Dieta (2.3): emagrecimento/ganho ocorre por balanço energético. Não praticar atividade em jejum (pode levar à hipoglicemia e desmaios). Realizar refeição leve 30 min antes do exercício e hidratar-se consumindo 35 mL por kg de peso corporal.",
+      "Força com segurança (2.5.6): (a) técnica adequada de levantamento; (b) evitar elevar pesos acima do prescrito pelo Instrutor/Guia; (c) respiração correta, evitando a Manobra de Valsalva — bloqueio da respiração que aumenta a pressão arterial durante o exercício.",
+      "Cardiovascular com segurança: o miocárdio é o músculo mais importante do corpo e precisa ser exercitado. A FC (2.6.2) é parâmetro para controlar a intensidade: medida em pé, sentado ou deitado, durante 15 s em repouso, multiplicando-se o resultado por 4 (BPM). Normas de execução: não executar após almoço e jantar; permanecer 3 semanas em cada nível; executar aquecimento, ginástica preparatória e volta à calma; ingerir água antes e depois; medir a FC antes e imediatamente após. Interrupção de até 3 semanas → reinicia na 1ª semana do nível interrompido; superior a 3 semanas → reinicia na 1ª semana do nível anterior. Benefícios do aquecimento (3.6.1): redução da viscosidade sanguínea, lubrificação das articulações e estímulo do sistema energético a ser solicitado.",
+    ],
+  },
+  {
+    titulo: "Bloco 2 — Princípios do Treinamento Físico",
+    paragrafos: [
+      "São seis princípios: Individualidade Biológica, Adaptação, Sobrecarga, Interdependência Volume-Intensidade, Continuidade e Especificidade.",
+      "Individualidade Biológica: cada ser humano possui estrutura e formação física próprias (Genótipo + Fenótipo). Um mesmo treino gera efeitos diferentes para cada indivíduo; a divisão em grupos homogêneos facilita o treinamento.",
+      "Adaptação: o organismo estimulado produz adaptações metabólicas e fisiológicas — Treino → Estímulo → Adaptação.",
+      "Sobrecarga: os estímulos devem impor estresse crescente; cargas constantes deixam de gerar efeito. Aumenta-se o VOLUME (mais repetições, mais dias, maior distância, mais tempo) ou a INTENSIDADE (mais peso, maior amplitude, maior velocidade, menor intervalo).",
+      "Interdependência Volume-Intensidade: as duas variáveis são inversamente proporcionais — quando o volume aumenta, a intensidade diminui e vice-versa.",
+      "Continuidade (e reversibilidade): os efeitos do treinamento são transitórios e reversíveis; revertem-se caso o indivíduo se torne inativo.",
+      "Especificidade: os efeitos são específicos para as partes e sistemas solicitados (para melhorar a corrida deve-se correr; a natação, nadar).",
+      "Componentes essenciais: treinos aeróbios recrutam grande massa muscular (2.4.1); duração de 15 a 60 min (contínua ou intervalada); intensidade entre 55 e 90% da FC máxima. A FC é ótimo parâmetro (2.6.2) e a intensidade é dividida em zonas-alvo (2.6.3).",
+    ],
+  },
+  {
+    titulo: "Bloco 3 — Treinamento Cardiovascular",
+    paragrafos: [
+      "Conceito: treinos diversos com predominância do sistema energético aeróbio na produção de energia. O treinamento aeróbico (3.6) compreende corrida, natação, ciclismo e lutas, com duração de 20 a 60 min.",
+      "Corrida (4.5.1): deve constar nos programas com frequência de pelo menos 2 vezes/semana. Natação: pelo menos 2x/semana, em dias não consecutivos, nadando ao menos 500 m em cada.",
+      "Fatores de influência nos treinos: (I) nível inicial → individualidade biológica; (II) intensidade → sobrecarga; (III) volume → sobrecarga; (IV) frequência semanal; (V) método de treinamento.",
+      "FC: medida durante 15 s em repouso, multiplicada por 4 = BPM. FCM = 220 − idade. Volume aumenta → intensidade diminui e vice-versa.",
+      "Método CONTÍNUO (predomínio do volume): Fartlek — corrida de distâncias e velocidades variáveis, 40 a 120 min, distâncias de 50 a 3000 m; Cross-promenade — mínimo de 3 km, 40 a 90 min, com aquecimento, desenvolvimento muscular, trabalho contínuo e intervalado.",
+      "Método INTERVALADO: estímulos de tiros, arrancadas e gestos esportivos; tempo de atividade até 5 min; 10 a 60 repetições; recuperação incompleta; ação no intervalo ativa, recuperadora ou passiva. Variações: lento (15–30 rep, 60–80% da velocidade máx.), rápido (esforços anaeróbicos láticos de 40'' a 2'), sprints intervalados e acceleration sprint.",
+      "Método FRACIONADO: aplicação de um segundo estímulo após a recuperação quase total do primeiro. Sprints repetidos (100–400 m, intervalo 4× o tempo, 12–24 rep) e corridas repetidas (800–3000 m, recuperação 3× o tempo, 3–10 rep).",
+      "Benefícios do treino cardiovascular: redução da gordura corporal; redução da pressão arterial e dos riscos cardíacos; maior utilização de gordura como fonte energética; aumento da economia de movimento.",
+    ],
+  },
+  {
+    titulo: "Bloco 4 — Treinamento de Força",
+    paragrafos: [
+      "Conceito: a força muscular é caracterizada pela presença de uma resistência aplicada ao sistema neuromuscular. Essa resistência não provém necessariamente de aparelhos sofisticados, mas de qualquer implemento que ofereça resistência ao músculo.",
+      "Variáveis do treino de força: ordem dos exercícios, velocidade de execução, número de séries, número de repetições, sobrecarga utilizada e período de recuperação.",
+      "Tipos de força: Pura (esportes de movimentos acíclicos com alta exigência de força); Dinâmica (aumento da massa muscular); Explosiva (melhora da potência); Resistência Muscular Localizada (melhora do tônus e da resistência das fibras).",
+      "Benefícios: aumento da taxa metabólica, fortalecimento de tendões e ligamentos, prevenção da perda de massa pela idade, aumento da densidade óssea, redução do percentual de gordura, melhora do metabolismo da glicose, redução/efeito hipotensor da pressão arterial e melhora na economia de corrida.",
+      "Métodos: (1) Circuito — 6 a 15 estações, alternando segmentos (braço/perna), 1 a 3 voltas, 2 a 3x/semana; (2) TRM (Resistência Muscular) — séries para cada grupamento; básico (peso corporal/companheiro) e avançado (barras, anilhas, toros, fuzil); 3 fases (aquecimento específico, execução, volta à calma); repetição ternária (1,2,3,0) e execução em 4 tempos (3x1, 2x2, 1x1, 4x4); (3) Funcional — baseado no princípio da instabilidade mecânica para gerar estímulo sensório-motor, trabalhando os músculos estabilizadores; (4) Musculação — treino de força em sala de equipamentos.",
+    ],
+  },
+  {
+    titulo: "Bloco 5 — Ginástica Preparatória Básica e Condução do TFM",
+    paragrafos: [
+      "Composição de uma sessão (cap 3): aquecimento articular geral, exercícios de alongamento, exercícios de aquecimento dos grupos musculares da atividade principal, treinamento aeróbico, exercícios neuromusculares e volta à calma.",
+      "Alongamento inicial: passivo ou estático, a pé firme, durando em torno de 10 min, dividido em Aquecimento Articular e Alongamento Prévio Muscular.",
+      "Aquecimento articular: iniciar de baixo para cima (membros inferiores, depois superiores); para cada articulação, unilateralmente, começando pela ESQUERDA e depois a direita; movimentos circulares lentos (~8 giros) no sentido horário e depois no inverso, com pequena amplitude.",
+      "Volta à calma: alongamento passivo/estático com duração de 5 a 15 min, executando de 30 s a 1 min por grupamento muscular.",
+      "Critérios para condução: Uniforme, Postura, Voz de comando, Ser claro e Segurança. Expressões verbais: claras, concisas e precisas; usar afastar, aproximar, flexionar e estender; evitar abrir, fechar e dobrar.",
+      "A Ginástica Preparatória Básica visa o aquecimento propriamente dito. Sequência: B-1 pescoço; B-2 elevação lateral dos braços; B-3 flexão do tronco; B-4 flexão sobre o solo; B-5 abdominal superior; B-6 agachamento básico; B-7 abdominal inferior/prancha; B-8 agachamento unilateral; B-9 panturrilha; B-10 corrida no mesmo lugar; B-11 polichinelo. Vocativos: 'Permissão para iniciar a Ginástica Preparatória Básica' / 'Pronto da Ginástica Preparatória Básica'.",
+    ],
+  },
+  {
+    titulo: "Bloco 6 — Legislação (TAF-A) e Aspecto Militar",
+    paragrafos: [
+      "Normas gerais: o TFM deve ser realizado diariamente nas OM; em condições excepcionais, no mínimo 3 vezes por semana (1.2.3). As OM designam Comissões de TAF-a (1.2.5). O Comandante ou Diretor é responsável por criar condições que assegurem a higidez física da Tripulação (1.2.11). Militares com 50 anos ou mais ficam desobrigados do TAF-a (1.2.12).",
+      "Periodização (3.7): fatores que influenciam a estruturação — nível de aptidão inicial, disponibilidade de tempo e objetivo a ser alcançado.",
+      "TAF-a (5.1–5.2): verifica o grau de condicionamento físico, aplicado por Comissão de Avaliação da OM, em pista de atletismo ou área plana demarcada e em piscina de 50 ou 25 m. Deve ser realizado anualmente até 20 de outubro. Para o CFN (ambos os sexos): corrida, natação, permanência dentro da água, flexão na barra (homens; pode trocar por flexão de braços no solo), flexões de braços no solo (mulheres e opcional para homens) e abdominal — em três dias não consecutivos.",
+      "Impedimentos (5.2.6): militares com motivo justificado (missão em Posto Oceanográfico, Rádio-Farol, Estação Antártica; gestantes, baixados etc.) realizam o TAF-a assim que o motivo do impedimento deixar de existir; o teste realizado após a cessação é retroativo à data do teste regular.",
+      "Fora da OM (5.2.8): até 6 meses (norma geral); superior a 6 e inferior a 12 meses (oficia à DPMM/CPesFN, cópia ao CEFAN); superior a 12 e inferior a 24 meses (ao menos 1 TAF-a); superior a 24 meses (ao menos 2 TAF-a); ou autoavaliação.",
+      "Relatório (5.7): militares não-CFN enviam por ofício ao CEFAN até 31/10 (e no SISDPMM-módulo TAF); militares do CFN enviam por ofício ao CPesFN até 31 de outubro, com cópia ao CEFAN.",
+      "Aspecto Militar: os militares Fuzileiros Navais são avaliados anualmente quanto à composição corporal em setembro/outubro. Os classificados como 'insuficientes' geram MSG ao CEFAN até 31OUT e são convocados para imersão de duas semanas de treinamento e conscientização.",
+    ],
+  },
+];
+
+/* ---------- MAPA MENTAL (árvore expansível) ---------- */
+const MAPA_MENTAL = {
+  nome: "TFM — CGCFN-108",
+  filhos: [
+    {
+      nome: "1. Segurança e Higiene",
+      filhos: [
+        { nome: "Saúde = bem-estar físico e mental", filhos: [] },
+        { nome: "Aptidão na Inspeção de Saúde", filhos: [] },
+        { nome: "Local: sem acidentes + ventilação", filhos: [] },
+        { nome: "Pré-TAF-a até 31/03 (turmas + carga)", filhos: [] },
+        {
+          nome: "Alimentação",
+          filhos: [
+            { nome: "2h após grande refeição", filhos: [] },
+            { nome: "Nunca em jejum (hipoglicemia)", filhos: [] },
+            { nome: "Refeição leve 30 min antes", filhos: [] },
+            { nome: "Hidratar 35 mL/kg", filhos: [] },
+          ],
+        },
+        {
+          nome: "Força com segurança",
+          filhos: [
+            { nome: "Técnica adequada", filhos: [] },
+            { nome: "Não exceder peso prescrito", filhos: [] },
+            { nome: "Respiração correta (evitar Valsalva)", filhos: [] },
+          ],
+        },
+        {
+          nome: "Benefícios do aquecimento",
+          filhos: [
+            { nome: "Reduz viscosidade sanguínea", filhos: [] },
+            { nome: "Lubrifica articulações", filhos: [] },
+            { nome: "Estimula sistema energético", filhos: [] },
+          ],
+        },
+      ],
+    },
+    {
+      nome: "2. Princípios do Treinamento",
+      filhos: [
+        { nome: "Individualidade (Genótipo+Fenótipo)", filhos: [] },
+        { nome: "Adaptação (Treino→Estímulo→Adaptação)", filhos: [] },
+        { nome: "Sobrecarga (estresse crescente)", filhos: [] },
+        { nome: "Interdependência V×I (inversos)", filhos: [] },
+        { nome: "Continuidade (reversível)", filhos: [] },
+        { nome: "Especificidade", filhos: [] },
+        {
+          nome: "Aeróbio (componentes)",
+          filhos: [
+            { nome: "15 a 60 min", filhos: [] },
+            { nome: "55 a 90% FC máx", filhos: [] },
+            { nome: "FC = ótimo parâmetro", filhos: [] },
+          ],
+        },
+      ],
+    },
+    {
+      nome: "3. Cardiovascular",
+      filhos: [
+        { nome: "Aeróbico 20–60 min (corrida, natação, ciclismo, lutas)", filhos: [] },
+        { nome: "Corrida ≥2x/sem; Natação ≥2x/sem, 500 m", filhos: [] },
+        { nome: "FCM = 220 − idade", filhos: [] },
+        {
+          nome: "Contínuo (volume)",
+          filhos: [
+            { nome: "Fartlek 40–120 min", filhos: [] },
+            { nome: "Cross-promenade ≥3 km, 40–90 min", filhos: [] },
+          ],
+        },
+        {
+          nome: "Intervalado",
+          filhos: [
+            { nome: "Até 5 min; 10–60 rep", filhos: [] },
+            { nome: "Recuperação incompleta", filhos: [] },
+          ],
+        },
+        { nome: "Fracionado (recuperação quase total)", filhos: [] },
+        {
+          nome: "Benefícios",
+          filhos: [
+            { nome: "↓ gordura corporal", filhos: [] },
+            { nome: "↓ PA e riscos cardíacos", filhos: [] },
+            { nome: "+ uso de gordura como energia", filhos: [] },
+            { nome: "+ economia de movimento", filhos: [] },
+          ],
+        },
+      ],
+    },
+    {
+      nome: "4. Força",
+      filhos: [
+        { nome: "Resistência ao sistema neuromuscular", filhos: [] },
+        {
+          nome: "Tipos",
+          filhos: [
+            { nome: "Pura (acíclicos)", filhos: [] },
+            { nome: "Dinâmica (massa)", filhos: [] },
+            { nome: "Explosiva (potência)", filhos: [] },
+            { nome: "RML (tônus/resistência)", filhos: [] },
+          ],
+        },
+        {
+          nome: "Métodos",
+          filhos: [
+            { nome: "Circuito (6–15 estações)", filhos: [] },
+            { nome: "TRM (básico/avançado; ternária 1,2,3,0)", filhos: [] },
+            { nome: "Funcional (instabilidade mecânica)", filhos: [] },
+            { nome: "Musculação", filhos: [] },
+          ],
+        },
+      ],
+    },
+    {
+      nome: "5. Ginástica Preparatória e Condução",
+      filhos: [
+        {
+          nome: "Sessão (6 partes)",
+          filhos: [
+            { nome: "Aquecimento articular", filhos: [] },
+            { nome: "Alongamento", filhos: [] },
+            { nome: "Aquecimento dos grupos musculares", filhos: [] },
+            { nome: "Treinamento aeróbico", filhos: [] },
+            { nome: "Neuromusculares", filhos: [] },
+            { nome: "Volta à calma", filhos: [] },
+          ],
+        },
+        { nome: "Articular: baixo→cima, esquerda primeiro, ~8 giros", filhos: [] },
+        { nome: "Volta à calma: 5–15 min; 30 s–1 min/grupo", filhos: [] },
+        { nome: "Critérios: Uniforme, Postura, Voz, Claro, Segurança", filhos: [] },
+        { nome: "Usar afastar/aproximar/flexionar/estender; evitar abrir/fechar/dobrar", filhos: [] },
+      ],
+    },
+    {
+      nome: "6. Legislação (TAF-A)",
+      filhos: [
+        { nome: "TFM diário; mín. 3x/sem (1.2.3)", filhos: [] },
+        { nome: "Comandante/Diretor: higidez (1.2.11)", filhos: [] },
+        { nome: "≥50 anos: desobrigados (1.2.12)", filhos: [] },
+        { nome: "TAF-a até 20/out; pista + piscina 50/25 m", filhos: [] },
+        { nome: "CFN: 3 dias não consecutivos", filhos: [] },
+        { nome: "CFN envia ao CPesFN até 31/10, cópia CEFAN", filhos: [] },
+        { nome: "Aspecto Militar (set/out); insuf.→imersão 2 sem", filhos: [] },
+      ],
+    },
+  ],
+};
+
+/* ---------- CONSULTA DO CONTEÚDO (blocos pesquisáveis) ---------- */
+const CONSULTA = [
+  { t: "Conceito de saúde", c: "O conceito atual de saúde envolve o completo bem-estar físico e mental, e não apenas a ausência de alguma enfermidade (2.2)." },
+  { t: "Aptidão / Inspeção de Saúde", c: "Os militares deverão estar APTOS nas Inspeções de Saúde para que possam cumprir os exercícios do TFM (1.2.6)." },
+  { t: "Local do TFM", c: "O TFM deverá ser conduzido em local que evite acidentes aos praticantes e que proporcione condições de ventilação adequada (1.2.7)." },
+  { t: "Pré-TAF-a", c: "Anualmente, até 31/03, todas as OM deverão efetuar o Pré-teste de Avaliação Física Anual (Pré-TAF-a). Os resultados servem para a divisão em turmas e para o dimensionamento da carga física (1.2.10)." },
+  { t: "Horário do TFM", c: "De preferência pela manhã; quando não for possível, deve iniciar cerca de 2 horas após o término das principais refeições (almoço e jantar) (1.2.8)." },
+  { t: "Clima e umidade", c: "Em regiões/estações com temperaturas muito baixas ou elevadas, treinar nos horários de temperatura amena, com atenção à umidade relativa do ar (1.2.8)." },
+  { t: "Jejum", c: "Não praticar nenhuma atividade física em jejum: além de não favorecer a redução de massa corporal, pode levar à hipoglicemia e desmaios (2.3.3)." },
+  { t: "Refeição pré-treino", c: "Realizar uma refeição leve trinta minutos antes do exercício (2.3.3)." },
+  { t: "Hidratação", c: "Hidratar-se consumindo 35 mL por kg de peso corporal (2.3.1)." },
+  { t: "Medidas de segurança na força", c: "(a) técnica adequada de levantamento; (b) evitar elevar pesos acima do prescrito pelo Instrutor/Guia; (c) respiração correta, evitando a Manobra de Valsalva (2.5.6)." },
+  { t: "Manobra de Valsalva", c: "Bloqueio da respiração, que resulta em aumento na pressão arterial durante a execução dos exercícios." },
+  { t: "Miocárdio", c: "O músculo cardíaco é denominado miocárdio, considerado o músculo mais importante do corpo; como todo músculo, precisa ser exercitado (2.6.1)." },
+  { t: "Medida da FC", c: "A FC é medida em pé, sentado ou deitado, durante 15 s em repouso; multiplicando-se o resultado por 4 obtém-se o valor em BPM (2.6.2)." },
+  { t: "FC máxima", c: "FCM ou FCmax = 220 − idade (em bpm). A fórmula, apesar de não tão precisa, confere estimativa para treinar com segurança (2.6.2)." },
+  { t: "Normas de execução cardiovascular", c: "Não executar após almoço/jantar; permanecer 3 semanas em cada nível; executar aquecimento, ginástica preparatória e volta à calma; ingerir água antes e depois; medir FC antes e imediatamente após; regras de reinício em caso de interrupção." },
+  { t: "Benefícios do aquecimento", c: "Redução da viscosidade sanguínea; lubrificação das articulações; estímulo do sistema energético a ser solicitado (3.6.1)." },
+  { t: "Individualidade Biológica", c: "Cada ser humano possui estrutura e formação física próprias (Genótipo + Fenótipo). Um mesmo treino resulta em efeitos diferentes para cada indivíduo (3.4)." },
+  { t: "Adaptação", c: "O organismo estimulado produz adaptações metabólicas e fisiológicas: Treino → Estímulo → Adaptação (3.4)." },
+  { t: "Sobrecarga", c: "Os estímulos devem impor estresse crescente ao organismo; cargas constantes deixam de ter efeito positivo. Aplica-se aumentando o volume ou a intensidade (3.4)." },
+  { t: "Interdependência Volume-Intensidade", c: "Volume e intensidade são inversamente proporcionais; quando o volume aumenta, a intensidade diminui e vice-versa (3.4)." },
+  { t: "Continuidade", c: "Os efeitos do treinamento são transitórios e reversíveis; revertem-se caso o indivíduo se torne inativo (3.4)." },
+  { t: "Especificidade", c: "Os efeitos do treinamento são específicos para as partes e sistemas corporais solicitados na atividade (3.4)." },
+  { t: "Duração do aeróbio", c: "Treinos aeróbios têm duração de 15 a 60 min, contínuos ou intervalados, dependendo da intensidade (2.4.1)." },
+  { t: "Intensidade do aeróbio", c: "Intensidades variando entre 55 e 90% da frequência cardíaca máxima (2.4.1)." },
+  { t: "Treinamento aeróbico (3.6)", c: "Compreende corrida, natação, ciclismo e lutas, com duração de 20 a 60 min." },
+  { t: "Treino de corrida", c: "Deve constar nos programas com frequência de pelo menos 2 vezes/semana (4.5.1)." },
+  { t: "Treino de natação", c: "Pelo menos 2x por semana, em dias não consecutivos, nadando pelo menos 500 m em cada (4.5.1)." },
+  { t: "Método contínuo — Fartlek", c: "Corrida composta de distâncias e velocidades variáveis, com duração de 40 a 120 min; distâncias de 50 até 3000 m (predomínio do volume)." },
+  { t: "Método contínuo — Cross-promenade", c: "Mínimo de 3 km, duração de 40 a 90 min; composto de aquecimento, desenvolvimento muscular, trabalho contínuo e trabalho intervalado." },
+  { t: "Método intervalado", c: "Composto de estímulos de tiros, arrancadas e gestos esportivos; tempo de atividade até 5 min; 10 a 60 repetições; recuperação incompleta; ação no intervalo ativa, recuperadora ou passiva." },
+  { t: "Método fracionado", c: "Aplicação de um segundo estímulo após a recuperação quase total dos efeitos do primeiro. Ex.: sprints repetidos e corridas repetidas." },
+  { t: "Benefícios do cardiovascular", c: "Redução da gordura corporal; redução da pressão arterial e de riscos cardíacos; maior utilização de gordura como fonte energética; aumento da economia de movimento." },
+  { t: "Conceito de força", c: "A força muscular é caracterizada pela presença de uma resistência aplicada ao sistema neuromuscular (CGCFN-108)." },
+  { t: "Tipos de força", c: "Pura (movimentos acíclicos com alta exigência de força); Dinâmica (aumento de massa muscular); Explosiva (potência); RML (tônus e resistência das fibras)." },
+  { t: "Método Circuito", c: "6 a 15 estações, alternando o segmento de trabalho (braço/perna); de 1 a 3 voltas; de 2 a 3 vezes na semana." },
+  { t: "Método TRM", c: "Séries para cada grupamento muscular. Básico: peso corporal ou de companheiro. Avançado: barras, anilhas, toros ou fuzil. Possui 3 fases; repetição ternária (1,2,3,0); execução em 4 tempos (3x1, 2x2, 1x1, 4x4)." },
+  { t: "Método Funcional", c: "Baseia-se no princípio da instabilidade mecânica para gerar estímulo sensório-motor, trabalhando os músculos estabilizadores além dos principais." },
+  { t: "Composição da sessão", c: "Aquecimento articular geral, exercícios de alongamento, aquecimento dos grupos musculares da atividade principal, treinamento aeróbico, exercícios neuromusculares e volta à calma (cap 3)." },
+  { t: "Aquecimento articular", c: "Iniciar de baixo para cima (membros inferiores, depois superiores); unilateralmente, começando pela esquerda; movimentos circulares lentos (~8 giros), horário e depois inverso, com pequena amplitude." },
+  { t: "Volta à calma", c: "Alongamento passivo/estático com duração de 5 a 15 min; de 30 s a 1 min por grupamento muscular." },
+  { t: "Critérios de condução", c: "Uniforme, Postura, Voz de comando, Ser claro e Segurança." },
+  { t: "Expressões verbais", c: "Devem ser claras, concisas e precisas. Usar: afastar, aproximar, flexionar e estender. Evitar: abrir, fechar e dobrar." },
+  { t: "Vocativos da ginástica", c: "'Permissão para iniciar a Ginástica Preparatória Básica' (início) e 'Pronto da Ginástica Preparatória Básica' (final)." },
+  { t: "Frequência do TFM", c: "O TFM deve ser realizado diariamente nas OM; em condições excepcionais, no mínimo 3 vezes por semana (1.2.3)." },
+  { t: "Higidez física", c: "O Comandante ou Diretor é o responsável por criar condições que assegurem a higidez física da Tripulação (1.2.11)." },
+  { t: "Desobrigação do TAF-a", c: "Militares com idade igual ou superior a 50 anos ficam desobrigados da realização do TAF-a (1.2.12)." },
+  { t: "Prazo do TAF-a", c: "O TAF-a será realizado anualmente até 20 de outubro (5.2.1)." },
+  { t: "Local do TAF-a", c: "Pista de atletismo ou área plana previamente demarcada e piscina de 50 ou 25 m (5.2)." },
+  { t: "Modalidades CFN", c: "Corrida, natação, permanência dentro da água, flexão na barra (homens), flexões de braços no solo (mulheres/opcional homens) e abdominal — em três dias não consecutivos (5.2.3)." },
+  { t: "Envio do resultado (CFN)", c: "Por meio de ofício ao CPesFN, até 31 de outubro, com cópia ao CEFAN (5.7.2)." },
+  { t: "Aspecto Militar", c: "Composição corporal avaliada em setembro/outubro. 'Insuficientes': MSG ao CEFAN até 31OUT e imersão de duas semanas de treinamento e conscientização (6.4.3)." },
+];
+
+/* ---------- QUESTÕES PADRÃO (do próprio material, sem alterações) ---------- */
+const QUESTOES_PADRAO = [
+  { n: 1, p: "O atual conceito de saúde é tido somente como a ausência de alguma enfermidade?", r: "NÃO. O conceito atual de saúde envolve o completo bem-estar físico e mental, e não apenas a ausência de alguma enfermidade." },
+  { n: 2, p: "Qual cuidado devemos ter ao escolher um local p/ condução do TFM?", r: "Selecionar local que evite acidentes aos praticantes e que proporcione condição de ventilação adequada." },
+  { n: 3, p: "Quais cuidados alimentares são citados como segurança e higiene nesta aula?", r: "Para perfeita digestão, obedeça ao repouso de 2 horas após uma grande refeição, não praticar nenhuma atividade em jejum, realizar uma refeição leve 30 min antes do exercício e hidratar-se consumindo 35 mL/kg de peso corporal." },
+  { n: 4, p: "Cite alguns cuidados relacionados ao clima no TFM.", r: "Em regiões/estações com temperaturas muito baixas ou elevadas, o TFM deverá ser realizado nos horários em que a temperatura estiver amena; atenção também às condições da umidade relativa do ar; considerar a intensidade da atividade e as pausas para hidratação." },
+  { n: 5, p: "Por que os militares deverão estar aptos na Inspeção de Saúde para cumprir os exercícios do TFM?", r: "(Responda com suas palavras.) Porque o TFM impõe esforços físicos e a aptidão na inspeção garante que o militar tem condições de saúde para executá-los sem risco, cumprindo o programa com segurança." },
+  { n: 6, p: "Cite os benefícios do aquecimento.", r: "Redução da viscosidade sanguínea, lubrificação das articulações e estímulo do sistema energético a ser solicitado." },
+  { n: 7, p: "Qual o perigo da realização de atividades físicas em jejum?", r: "Pode levar à hipoglicemia e desmaios." },
+  { n: 8, p: "Quais medidas de segurança devem ser consideradas no trabalho de força?", r: "Técnica adequada de levantamento, evitar elevar pesos acima do prescrito pelo Instrutor/Guia e respiração correta." },
+  { n: 9, p: "O que vem a ser a manobra de Valsalva?", r: "Bloqueio da respiração, que resulta em aumento na pressão arterial durante a execução dos exercícios." },
+  { n: 10, p: "Cite normas p/ execução de exercícios cardiovasculares.", r: "Não executar após almoço e jantar; permanecer três semanas em cada nível; executar aquecimento, ginástica preparatória e volta à calma; ingerir água antes e depois; se interrompido por até três semanas, reiniciar a partir da 1ª semana correspondente ao nível em que foi interrompido." },
+  { n: 11, p: "Cada ser humano possui estrutura e formação física próprias; qual princípio precisamos respeitar?", r: "Princípio da Individualidade." },
+  { n: 12, p: "Qual princípio deve ser aplicado para que ocorram adaptações progressivas sem dano ao aluno?", r: "Princípio da Adaptação." },
+  { n: 13, p: "Em média, qual a duração indicada para atividades aeróbias?", r: "15 a 60 min." },
+  { n: 14, p: "Como podemos aplicar o princípio da sobrecarga?", r: "Aumentando o volume ou a intensidade do treinamento." },
+  { n: 15, p: "O SD Antunes usou a mesma carga dos colegas experientes, não impôs estresse crescente e se lesionou. Qual princípio não foi respeitado?", r: "Princípio da Sobrecarga." },
+  { n: 16, p: "Segundo a CGCFN-108 (2.6.2), o que é indicado como ótimo parâmetro para controlar a intensidade dos exercícios?", r: "Frequência cardíaca." },
+  { n: 17, p: "Cite dois parâmetros para aumentar o volume do treinamento.", r: "Aumentar a quantidade de repetições e aumentar o tempo da atividade." },
+  { n: 18, p: "Em qual princípio o volume e a intensidade são inversamente proporcionais?", r: "Princípio da Interdependência Volume × Intensidade." },
+  { n: 19, p: "O CB Wilson foi reprovado na corrida e foi inscrito em barra/abd. Qual princípio o instrutor não aplicou?", r: "Princípio da Especificidade." },
+  { n: 20, p: "O CB Pimenta foi reprovado por falta de treino entre um TAF e outro. Qual princípio não foi aplicado?", r: "Princípio da Continuidade." },
+  { n: 21, p: "O treinamento de corrida deverá constar nos programas de TFM com a frequência de pelo menos…", r: "2 vezes/semana." },
+  { n: 22, p: "O treinamento aeróbico (corrida, natação, ciclismo, lutas) tem duração de…", r: "20 a 60 min." },
+  { n: 23, p: "Como se chama o princípio que opõe volume e intensidade?", r: "Interdependência." },
+  { n: 24, p: "Métodos de treinamento cardiovascular — método contínuo. Cite exemplos.", r: "Fartlek e Cross-promenade." },
+  { n: 25, p: "Cite benefícios do treino cardiovascular.", r: "Redução da gordura corporal; redução da pressão arterial e de riscos cardíacos; maior utilização de gordura como fonte energética; aumento da economia de movimento." },
+  { n: 26, p: "Certo ou errado: (a) sessão aeróbica máx. 40 min; (b) mínimo 3 corridas/sem; (c) FC controla intensidade; (d) no contínuo predomina a intensidade; (e) natação 2x/sem.", r: "(a) ERRADO — 60 min; (b) ERRADO — 2x; (c) CERTO; (d) ERRADO — predomina o volume; (e) CERTO." },
+  { n: 27, p: "Complete: 'Sempre no ____, avaliar as condições do militar; os estímulos podem ser ____, ____ ou ____.'", r: "No início de um treinamento; nulas; adaptativas; danosas." },
+  { n: 28, p: "V ou F: (a) Fartlek e Cross-promenade = método contínuo; (b) aumentar velocidade e distância juntas; (c) intervalado = tiros/arrancadas; (d) fracionado sem recuperação total.", r: "(a) V; (b) F; (c) V; (d) F." },
+  { n: 29, p: "Em condições excepcionais, o TFM deverá ser efetuado no mínimo…", r: "3 vezes por semana." },
+  { n: 30, p: "Quem é o responsável por assegurar a higidez física da Tripulação?", r: "O Comandante ou Diretor." },
+  { n: 31, p: "Ficam desobrigados do TAF-a os militares com idade igual ou superior a…", r: "50 anos." },
+  { n: 32, p: "Em que tipo de local o TAF-a deve ser realizado?", r: "Em pista de atletismo ou área plana previamente demarcada e em piscina de 50 ou 25 m." },
+  { n: 33, p: "O TAF-a será realizado anualmente até…", r: "20 de outubro." },
+  { n: 34, p: "Militares com motivo justificado (missão em Posto Oceanográfico, Rádio-Farol, Estação Antártica etc.) deverão realizá-lo…", r: "Assim que o motivo do impedimento deixar de existir." },
+  { n: 35, p: "O TAF-a realizado após a cessação do impedimento será…", r: "Retroativo à data correspondente ao teste regular." },
+  { n: 36, p: "Militares do CFN deverão enviar os resultados do TAF-A…", r: "Por meio de ofício ao CPesFN, até o dia 31 de outubro, com cópia ao CEFAN." },
+  { n: 37, p: "O que visa a Ginástica Preparatória Básica?", r: "O aquecimento propriamente dito." },
+  { n: 38, p: "Como é composta uma sessão de exercícios físicos, segundo a CGCFN-108?", r: "Aquecimento articular geral, exercícios de alongamento, exercícios de aquecimento dos grupos musculares da atividade principal, treinamento aeróbico, exercícios neuromusculares e volta à calma." },
+  { n: 39, p: "Como é dividido o Alongamento?", r: "Aquecimento articular e alongamento prévio muscular." },
+  { n: 40, p: "Como se deve iniciar o Aquecimento Articular?", r: "De baixo para cima: membros inferiores e em seguida membros superiores." },
+  { n: 41, p: "No Aquecimento Articular unilateral, por qual lado se inicia a primeira execução?", r: "Lado esquerdo." },
+  { n: 42, p: "Qual a média de tempo que deve durar o alongamento da Volta à Calma?", r: "De 5 a 15 minutos." },
+  { n: 43, p: "Qual a média de tempo para executar a volta à calma para cada grupamento muscular?", r: "De 30 segundos a 1 minuto." },
+  { n: 44, p: "Cite 3 critérios para uma boa condução de uma aula de TFM.", r: "Uniforme, postura, voz de comando, ser claro e segurança." },
+  { n: 45, p: "Quais expressões verbais devem ser evitadas na aula de TFM?", r: "Abrir, fechar e dobrar." },
+  { n: 46, p: "Qual o primeiro e o último vocativo que o instrutor deve falar ao mais antigo presente?", r: "'Permissão para iniciar a Ginástica Preparatória Básica.' / 'Pronto da Ginástica Preparatória Básica.'" },
+];
+
+
+/* ==========================================================================
+   BANCOS DE EXERCÍCIOS — baseados 100% no conteúdo da CGCFN-108
+   ========================================================================== */
+
+/* ---------- FLASHCARDS (frente / verso) ---------- */
+const FLASHCARDS = [
+  { f: "Conceito atual de saúde?", v: "Completo bem-estar físico e mental — não apenas ausência de enfermidade.", dica: "Bem-estar completo, não só 'sem doença'.", def: "Saúde = físico + mental." },
+  { f: "Onde conduzir o TFM?", v: "Local que evite acidentes e proporcione ventilação adequada.", dica: "Segurança + ar.", def: "Sem acidentes + ventilado." },
+  { f: "Até quando fazer o Pré-TAF-a?", v: "Anualmente até 31/03 (divide turmas e dimensiona a carga).", dica: "Março, início do ano.", def: "Pré-TAF-a: até 31/03." },
+  { f: "Repouso após grande refeição?", v: "2 horas.", dica: "Duas horas.", def: "2 h." },
+  { f: "Pode treinar em jejum?", v: "Não — pode causar hipoglicemia e desmaios.", dica: "Jejum = perigo.", def: "Nunca em jejum." },
+  { f: "Refeição leve antes do treino?", v: "30 minutos antes.", dica: "Meia hora.", def: "30 min antes." },
+  { f: "Quanto hidratar?", v: "35 mL por kg de peso corporal.", dica: "35 mL/kg.", def: "35 mL/kg." },
+  { f: "Medidas de segurança no trabalho de força?", v: "Técnica adequada, não exceder o peso prescrito, respiração correta.", dica: "Técnica + peso + respiração.", def: "Técnica, peso, respiração." },
+  { f: "O que é a Manobra de Valsalva?", v: "Bloqueio da respiração → aumento da pressão arterial.", dica: "Prender a respiração.", def: "Bloqueio respiratório → ↑PA." },
+  { f: "Benefícios do aquecimento?", v: "Reduz viscosidade sanguínea, lubrifica articulações, estimula o sistema energético.", dica: "Sangue + articulações + energia.", def: "Viscosidade↓, lubrifica, estimula energia." },
+  { f: "Como medir a FC?", v: "15 s em repouso × 4 = BPM.", dica: "15 segundos × 4.", def: "15 s × 4." },
+  { f: "Fórmula da FC máxima?", v: "FCM = 220 − idade.", dica: "220 menos idade.", def: "FCM = 220 − idade." },
+  { f: "Quais são os 6 princípios do treinamento?", v: "Individualidade, Adaptação, Sobrecarga, Interdependência V×I, Continuidade, Especificidade.", dica: "Mnemônico: I-A-S-I-C-E.", def: "IASICE." },
+  { f: "Princípio: cada pessoa é única (genótipo+fenótipo)?", v: "Individualidade Biológica.", dica: "Cada um é diferente.", def: "Individualidade." },
+  { f: "Princípio: Treino→Estímulo→Adaptação?", v: "Adaptação.", dica: "O corpo se adapta.", def: "Adaptação." },
+  { f: "Princípio: estresse crescente / cargas constantes perdem efeito?", v: "Sobrecarga.", dica: "Aumentar a carga.", def: "Sobrecarga." },
+  { f: "Princípio: volume e intensidade inversamente proporcionais?", v: "Interdependência Volume × Intensidade.", dica: "Um sobe, outro desce.", def: "Interdependência V×I." },
+  { f: "Princípio: efeitos transitórios e reversíveis?", v: "Continuidade.", dica: "Parou, perdeu.", def: "Continuidade." },
+  { f: "Princípio: correr para corrida, nadar para natação?", v: "Especificidade.", dica: "Específico ao objetivo.", def: "Especificidade." },
+  { f: "Duração das atividades aeróbias (componentes)?", v: "15 a 60 min.", dica: "Quinze a sessenta.", def: "15–60 min." },
+  { f: "Faixa de intensidade do aeróbio?", v: "55 a 90% da FC máxima.", dica: "55 a 90%.", def: "55–90% FCmáx." },
+  { f: "Duração do treinamento aeróbico (3.6)?", v: "20 a 60 min (corrida, natação, ciclismo, lutas).", dica: "Vinte a sessenta.", def: "20–60 min." },
+  { f: "Frequência mínima da corrida?", v: "Pelo menos 2 vezes/semana.", dica: "Duas por semana.", def: "≥2x/sem." },
+  { f: "Natação: frequência e distância mínima?", v: "Pelo menos 2x/semana, dias não consecutivos, mínimo 500 m.", dica: "2x, 500 m.", def: "2x/sem, 500 m." },
+  { f: "Métodos cardiovasculares?", v: "Contínuo, Intervalado e Fracionado.", dica: "C-I-F.", def: "Contínuo/Intervalado/Fracionado." },
+  { f: "Fartlek: tipo e duração?", v: "Método contínuo; 40 a 120 min; distâncias variáveis (50–3000 m).", dica: "Jogo de corridas, 40–120 min.", def: "Contínuo, 40–120 min." },
+  { f: "Cross-promenade: distância e duração?", v: "Mínimo 3 km; 40 a 90 min.", dica: "≥3 km, 40–90 min.", def: "≥3 km, 40–90 min." },
+  { f: "Método intervalado: tempo e repetições?", v: "Até 5 min; 10 a 60 repetições; recuperação incompleta.", dica: "Tiros; recuperação incompleta.", def: "≤5 min, 10–60 rep." },
+  { f: "Método fracionado: característica?", v: "2º estímulo após recuperação quase total do 1º.", dica: "Recuperação quase total.", def: "Recuperação quase total." },
+  { f: "Benefícios do cardiovascular?", v: "↓gordura, ↓PA e riscos cardíacos, +uso de gordura como energia, +economia de movimento.", dica: "Coração + gordura + economia.", def: "↓gordura/PA, +energia/economia." },
+  { f: "Conceito de força muscular?", v: "Resistência aplicada ao sistema neuromuscular.", dica: "Resistência ao músculo.", def: "Resistência ao neuromuscular." },
+  { f: "Tipos de força?", v: "Pura, Dinâmica, Explosiva e RML.", dica: "P-D-E-RML.", def: "Pura/Dinâmica/Explosiva/RML." },
+  { f: "Força para massa muscular?", v: "Força Dinâmica.", dica: "Massa = dinâmica.", def: "Dinâmica → massa." },
+  { f: "Força para potência?", v: "Força Explosiva.", dica: "Potência = explosiva.", def: "Explosiva → potência." },
+  { f: "Métodos de força?", v: "Circuito, TRM, Funcional e Musculação.", dica: "C-T-F-M.", def: "Circuito/TRM/Funcional/Musculação." },
+  { f: "Circuito: nº de estações, voltas e frequência?", v: "6 a 15 estações; 1 a 3 voltas; 2 a 3x/semana.", dica: "6–15, 1–3, 2–3.", def: "6–15 estações." },
+  { f: "TRM: repetição e execução?", v: "Repetição ternária (1,2,3,0); execução em 4 tempos (3x1, 2x2, 1x1, 4x4).", dica: "Ternária 1,2,3,0.", def: "Ternária (1,2,3,0)." },
+  { f: "Base do Treinamento Funcional?", v: "Princípio da instabilidade mecânica → estímulo sensório-motor.", dica: "Instabilidade.", def: "Instabilidade mecânica." },
+  { f: "Composição de uma sessão (6 partes)?", v: "Aquecimento articular, alongamento, aquecimento dos grupos musculares, aeróbico, neuromusculares, volta à calma.", dica: "6 partes.", def: "Articular→alongar→grupos→aeróbio→neuro→calma." },
+  { f: "Aquecimento articular: ordem e lado?", v: "De baixo para cima; unilateral começando pela ESQUERDA; ~8 giros.", dica: "Baixo→cima, esquerda 1º.", def: "Baixo→cima, esquerda." },
+  { f: "Volta à calma: duração total e por grupo?", v: "5 a 15 min no total; 30 s a 1 min por grupamento.", dica: "5–15 min; 30 s–1 min.", def: "5–15 min; 30 s–1 min." },
+  { f: "Critérios de condução (5)?", v: "Uniforme, Postura, Voz de comando, Ser claro, Segurança.", dica: "U-P-V-C-S.", def: "Uniforme/Postura/Voz/Claro/Segurança." },
+  { f: "Expressões a EVITAR?", v: "Abrir, fechar e dobrar.", dica: "A-F-D.", def: "Abrir/fechar/dobrar." },
+  { f: "Expressões a USAR?", v: "Afastar, aproximar, flexionar e estender.", dica: "Termos técnicos.", def: "Afastar/aproximar/flexionar/estender." },
+  { f: "O que visa a Ginástica Preparatória Básica?", v: "O aquecimento propriamente dito.", dica: "Aquecer.", def: "Aquecimento." },
+  { f: "Vocativos de início e fim da ginástica?", v: "'Permissão para iniciar…' / 'Pronto da Ginástica Preparatória Básica.'", dica: "Permissão / Pronto.", def: "Permissão/Pronto." },
+  { f: "Frequência mínima do TFM (excepcional)?", v: "3 vezes por semana (o TFM é diário).", dica: "Mínimo 3x.", def: "Mín. 3x/sem." },
+  { f: "Responsável pela higidez física?", v: "O Comandante ou Diretor.", dica: "O chefe.", def: "Comandante/Diretor." },
+  { f: "Idade de desobrigação do TAF-a?", v: "50 anos ou mais.", dica: "Meio século.", def: "≥50 anos." },
+  { f: "Prazo do TAF-a?", v: "Até 20 de outubro.", dica: "20/out.", def: "20/out." },
+  { f: "Local do TAF-a?", v: "Pista/área plana + piscina de 50 ou 25 m.", dica: "Pista + piscina.", def: "Pista + piscina 50/25 m." },
+  { f: "Envio do resultado (CFN)?", v: "Ofício ao CPesFN até 31/10, cópia ao CEFAN.", dica: "CPesFN, 31/10, cópia CEFAN.", def: "CPesFN até 31/10." },
+];
+
+/* ---------- MÚLTIPLA ESCOLHA (5 alternativas) ---------- */
+const MULTIPLA = [
+  { p: "O conceito atual de saúde envolve:", a: ["Apenas a ausência de enfermidade", "O completo bem-estar físico e mental", "Somente a aptidão aeróbica", "Apenas a força muscular", "Somente a composição corporal"], correta: 1, dica: "Vai além de 'não estar doente'.", memo: "Saúde = físico + mental, não só ausência de doença." },
+  { p: "O TFM deve ser conduzido em local que:", a: ["Tenha equipamentos caros", "Seja fechado e sem ventilação", "Evite acidentes e tenha ventilação adequada", "Fique longe da OM", "Tenha piscina obrigatória"], correta: 2, dica: "Pense em segurança e ar.", memo: "Local seguro + ventilado." },
+  { p: "Não praticar atividade em jejum evita:", a: ["Câimbras apenas", "Hipoglicemia e desmaios", "Aumento de massa", "Melhora da FC", "Lesão no joelho"], correta: 1, dica: "Falta de açúcar no sangue.", memo: "Jejum → hipoglicemia e desmaios." },
+  { p: "A hidratação recomendada é de:", a: ["20 mL/kg", "25 mL/kg", "30 mL/kg", "35 mL/kg", "45 mL/kg"], correta: 3, dica: "Entre 30 e 40.", memo: "35 mL por kg de peso." },
+  { p: "A Manobra de Valsalva consiste em:", a: ["Respiração acelerada", "Bloqueio da respiração com aumento da PA", "Hiperventilação controlada", "Apneia relaxante", "Expiração forçada contínua"], correta: 1, dica: "Prender o ar sob esforço.", memo: "Valsalva = bloqueio → ↑PA." },
+  { p: "NÃO é um benefício do aquecimento:", a: ["Redução da viscosidade sanguínea", "Lubrificação das articulações", "Estímulo do sistema energético", "Aumento da pressão arterial", "Preparação para o esforço"], correta: 3, dica: "Qual delas é ruim?", memo: "Aquecimento: viscosidade↓, lubrifica, estimula energia." },
+  { p: "A FC máxima é obtida pela fórmula:", a: ["200 − idade", "220 − idade", "210 − peso", "220 + idade", "180 − idade"], correta: 1, dica: "Começa em 220.", memo: "FCM = 220 − idade." },
+  { p: "A FC de repouso é medida durante 15 s e multiplicada por:", a: ["2", "3", "4", "5", "6"], correta: 2, dica: "15 s → 60 s.", memo: "15 s × 4 = BPM." },
+  { p: "Qual princípio: 'cada ser humano possui estrutura e formação física próprias'?", a: ["Adaptação", "Sobrecarga", "Individualidade Biológica", "Continuidade", "Especificidade"], correta: 2, dica: "Cada um é único.", memo: "Individualidade = genótipo + fenótipo." },
+  { p: "Impor estresse crescente ao organismo refere-se ao princípio da:", a: ["Individualidade", "Sobrecarga", "Interdependência", "Especificidade", "Continuidade"], correta: 1, dica: "Aumentar a carga.", memo: "Sobrecarga = estresse crescente." },
+  { p: "Volume e intensidade inversamente proporcionais é o princípio da:", a: ["Adaptação", "Sobrecarga", "Interdependência Volume-Intensidade", "Continuidade", "Individualidade"], correta: 2, dica: "Um sobe, o outro desce.", memo: "Interdependência V×I: inversos." },
+  { p: "Os efeitos do treinamento são transitórios e reversíveis. Princípio da:", a: ["Continuidade", "Especificidade", "Sobrecarga", "Adaptação", "Individualidade"], correta: 0, dica: "Parou, perdeu.", memo: "Continuidade: reversível." },
+  { p: "Reprovar por inscrever militar em barra quando o problema é corrida fere o princípio da:", a: ["Sobrecarga", "Continuidade", "Especificidade", "Adaptação", "Interdependência"], correta: 2, dica: "Treinar exatamente o que se quer melhorar.", memo: "Especificidade: corrida→correr." },
+  { p: "A duração das atividades aeróbias (componentes essenciais) é de:", a: ["10 a 30 min", "15 a 60 min", "20 a 40 min", "30 a 90 min", "45 a 120 min"], correta: 1, dica: "Começa em 15.", memo: "Aeróbio: 15–60 min." },
+  { p: "A intensidade do aeróbio varia entre:", a: ["40 e 70% da FCmáx", "50 e 80% da FCmáx", "55 e 90% da FCmáx", "60 e 100% da FCmáx", "30 e 60% da FCmáx"], correta: 2, dica: "Faixa larga, até 90%.", memo: "55–90% da FCmáx." },
+  { p: "O treinamento aeróbico (3.6) tem duração de:", a: ["10 a 40 min", "15 a 45 min", "20 a 60 min", "30 a 60 min", "40 a 120 min"], correta: 2, dica: "Corrida, natação, ciclismo, lutas.", memo: "Aeróbico 3.6: 20–60 min." },
+  { p: "A corrida deve constar nos programas com frequência mínima de:", a: ["1x/semana", "2x/semana", "3x/semana", "4x/semana", "diária"], correta: 1, dica: "Pelo menos duas.", memo: "Corrida ≥2x/sem." },
+  { p: "Na natação, o militar deve nadar em cada sessão pelo menos:", a: ["250 m", "400 m", "500 m", "750 m", "1000 m"], correta: 2, dica: "Meio quilômetro.", memo: "Natação: 500 m, 2x/sem, dias não consecutivos." },
+  { p: "Fartlek e Cross-promenade são exemplos de método:", a: ["Intervalado", "Fracionado", "Contínuo", "Isométrico", "Pliométrico"], correta: 2, dica: "Predomínio do volume.", memo: "Contínuo: Fartlek e Cross-promenade." },
+  { p: "O método intervalado caracteriza-se por:", a: ["Recuperação quase total", "Tiros/arrancadas com recuperação incompleta", "Predomínio total do volume", "Corrida única contínua", "Ausência de intervalos"], correta: 1, dica: "Estímulos curtos e intensos.", memo: "Intervalado: recuperação incompleta." },
+  { p: "O método fracionado aplica o 2º estímulo:", a: ["Sem qualquer recuperação", "Após recuperação incompleta", "Após recuperação quase total do 1º", "Somente no dia seguinte", "Durante o próprio estímulo"], correta: 2, dica: "Quase totalmente recuperado.", memo: "Fracionado: recuperação quase total." },
+  { p: "NÃO é benefício do treino cardiovascular:", a: ["Redução da gordura corporal", "Redução da pressão arterial", "Maior uso de gordura como energia", "Aumento da economia de movimento", "Aumento da viscosidade sanguínea"], correta: 4, dica: "Uma delas é o oposto do desejado.", memo: "Cardio: ↓gordura/PA, +energia/economia." },
+  { p: "Força muscular é caracterizada por:", a: ["Uso obrigatório de aparelhos", "Resistência aplicada ao sistema neuromuscular", "Movimentos apenas cíclicos", "Ausência de sobrecarga", "Somente peso livre"], correta: 1, dica: "Resistência ao músculo.", memo: "Força = resistência ao neuromuscular." },
+  { p: "A força indicada para aumento da massa muscular é a:", a: ["Pura", "Dinâmica", "Explosiva", "RML", "Isométrica"], correta: 1, dica: "Hipertrofia.", memo: "Dinâmica → massa muscular." },
+  { p: "A força indicada para melhorar a potência é a:", a: ["Pura", "Dinâmica", "Explosiva", "RML", "Estática"], correta: 2, dica: "Rápida e forte.", memo: "Explosiva → potência." },
+  { p: "O Treinamento em Circuito deve conter:", a: ["2 a 4 estações", "6 a 15 estações", "10 a 20 estações", "15 a 30 estações", "sempre 12 estações"], correta: 1, dica: "Entre seis e quinze.", memo: "Circuito: 6–15 estações, 1–3 voltas, 2–3x/sem." },
+  { p: "O TRM utiliza repetição:", a: ["Binária (1,2,0)", "Ternária (1,2,3,0)", "Quaternária fixa", "Livre", "Única"], correta: 1, dica: "Conta até três e zero.", memo: "TRM: ternária (1,2,3,0)." },
+  { p: "O Treinamento Funcional baseia-se no princípio da:", a: ["Estabilidade total", "Instabilidade mecânica", "Sobrecarga máxima", "Isometria", "Especificidade absoluta"], correta: 1, dica: "Superfícies instáveis.", memo: "Funcional: instabilidade mecânica." },
+  { p: "A sessão de exercícios (cap 3) começa com:", a: ["Treinamento aeróbico", "Volta à calma", "Aquecimento articular geral", "Exercícios neuromusculares", "Musculação"], correta: 2, dica: "Primeiro se aquece.", memo: "Sessão: articular→alongar→grupos→aeróbio→neuro→calma." },
+  { p: "O aquecimento articular unilateral deve iniciar pelo lado:", a: ["Direito", "Esquerdo", "Dominante", "Não dominante", "Ambos ao mesmo tempo"], correta: 1, dica: "Sinistro.", memo: "Articular: esquerda primeiro; de baixo para cima." },
+  { p: "A volta à calma deve durar, por grupamento muscular:", a: ["10 a 20 s", "30 s a 1 min", "1 a 2 min", "2 a 3 min", "5 min"], correta: 1, dica: "Menos de um minuto e meio.", memo: "Volta à calma: 30 s–1 min/grupo; 5–15 min total." },
+  { p: "NÃO é um critério de condução de aula de TFM:", a: ["Uniforme", "Postura", "Voz de comando", "Velocidade máxima", "Segurança"], correta: 3, dica: "Um deles não pertence à lista.", memo: "Critérios: Uniforme/Postura/Voz/Claro/Segurança." },
+  { p: "Expressões que devem ser EVITADAS na aula de TFM:", a: ["Afastar, aproximar", "Flexionar, estender", "Abrir, fechar, dobrar", "Iniciar, terminar", "Subir, descer"], correta: 2, dica: "Termos imprecisos.", memo: "Evitar: abrir, fechar, dobrar." },
+  { p: "O TFM deve ser diário; excepcionalmente, no mínimo:", a: ["1x/semana", "2x/semana", "3x/semana", "4x/semana", "5x/semana"], correta: 2, dica: "Metade dos dias úteis.", memo: "Mínimo 3x/semana." },
+  { p: "É o responsável por assegurar a higidez física da Tripulação:", a: ["O CEFAN", "O CPesFN", "O Comandante ou Diretor", "O médico da OM", "O instrutor de TFM"], correta: 2, dica: "A autoridade máxima da OM.", memo: "Higidez: Comandante/Diretor." },
+  { p: "Ficam desobrigados do TAF-a os militares com idade igual ou superior a:", a: ["40 anos", "45 anos", "50 anos", "55 anos", "60 anos"], correta: 2, dica: "Meio século.", memo: "Desobrigados: ≥50 anos." },
+  { p: "O TAF-a deve ser realizado anualmente até:", a: ["31 de março", "30 de junho", "20 de outubro", "31 de outubro", "31 de dezembro"], correta: 2, dica: "Não confundir com o envio (31/10).", memo: "TAF-a: até 20/out; envio até 31/out." },
+  { p: "Os militares do CFN enviam os resultados do TAF-A por ofício ao:", a: ["CEFAN", "DPMM", "CPesFN, com cópia ao CEFAN", "SISDPMM", "Comando do 1º DN"], correta: 2, dica: "Pessoal de Fuzileiros Navais.", memo: "CFN → CPesFN até 31/10, cópia CEFAN." },
+];
+
+/* ---------- CERTO OU ERRADO ---------- */
+const CERTO_ERRADO = [
+  { p: "O conceito atual de saúde é apenas a ausência de enfermidade.", correta: false, memo: "Errado: é o completo bem-estar físico e mental." },
+  { p: "O TFM deve ser realizado em local que evite acidentes e tenha ventilação adequada.", correta: true, memo: "Certo (1.2.7)." },
+  { p: "É permitido treinar em jejum para acelerar o emagrecimento.", correta: false, memo: "Errado: jejum pode causar hipoglicemia e desmaios." },
+  { p: "A hidratação recomendada é de 35 mL por kg de peso corporal.", correta: true, memo: "Certo (2.3.1)." },
+  { p: "A Manobra de Valsalva reduz a pressão arterial durante o exercício.", correta: false, memo: "Errado: ela AUMENTA a pressão arterial." },
+  { p: "Uma sessão de exercícios aeróbicos pode ter a duração máxima de 40 min.", correta: false, memo: "Errado: até 60 min." },
+  { p: "O número mínimo de treinos de corrida deverá ser de 3 vezes por semana.", correta: false, memo: "Errado: pelo menos 2 vezes por semana." },
+  { p: "A FC é um parâmetro que pode ser utilizado para controlar a intensidade do TFM.", correta: true, memo: "Certo (2.6.2)." },
+  { p: "No método contínuo há o predomínio da intensidade em detrimento do volume.", correta: false, memo: "Errado: predomina o VOLUME." },
+  { p: "Os treinos de natação devem ser aplicados pelo menos 2x por semana.", correta: true, memo: "Certo (4.5.1)." },
+  { p: "A FC máxima é obtida por 220 − idade.", correta: true, memo: "Certo (2.6.2)." },
+  { p: "Volume e intensidade são diretamente proporcionais.", correta: false, memo: "Errado: são INVERSAMENTE proporcionais." },
+  { p: "No aquecimento articular unilateral inicia-se pelo lado direito.", correta: false, memo: "Errado: inicia-se pelo lado ESQUERDO." },
+  { p: "O aquecimento articular deve iniciar de baixo para cima.", correta: true, memo: "Certo: membros inferiores, depois superiores." },
+  { p: "A volta à calma deve durar de 5 a 15 minutos.", correta: true, memo: "Certo." },
+  { p: "As expressões 'abrir, fechar e dobrar' devem ser usadas na aula de TFM.", correta: false, memo: "Errado: devem ser EVITADAS." },
+  { p: "O TFM é diário, mas excepcionalmente pode ser feito no mínimo 3x/semana.", correta: true, memo: "Certo (1.2.3)." },
+  { p: "Militares com 50 anos ou mais ficam desobrigados do TAF-a.", correta: true, memo: "Certo (1.2.12)." },
+  { p: "O TAF-a deve ser realizado até 31 de outubro.", correta: false, memo: "Errado: o TAF-a é até 20/out; o envio é até 31/out." },
+  { p: "O Treinamento em Circuito deve conter de 6 a 15 estações.", correta: true, memo: "Certo." },
+  { p: "O Treinamento Funcional baseia-se no princípio da instabilidade mecânica.", correta: true, memo: "Certo." },
+  { p: "A força explosiva é indicada para o aumento da massa muscular.", correta: false, memo: "Errado: explosiva → potência; a dinâmica é para massa." },
+];
+
+/* ---------- COMPLETE AS LACUNAS ---------- */
+const LACUNAS = [
+  { texto: "O conceito atual de saúde envolve o completo bem-estar ___ e ___.", respostas: ["físico", "mental"], memo: "Físico + mental." },
+  { texto: "Hidratar-se consumindo ___ mL por kg de peso corporal.", respostas: ["35"], memo: "35 mL/kg." },
+  { texto: "A FCM é obtida por 220 − ___.", respostas: ["idade"], memo: "220 − idade." },
+  { texto: "O treinamento de corrida deve ter frequência de pelo menos ___ vezes por semana.", respostas: ["2"], memo: "2x/semana." },
+  { texto: "Sempre no ___ de um treinamento devem ser avaliadas as condições do militar.", respostas: ["início"], memo: "No início do treinamento." },
+  { texto: "Os estímulos podem gerar respostas ___, ___ ou até mesmo ___.", respostas: ["nulas", "adaptativas", "danosas"], memo: "Nulas, adaptativas, danosas." },
+  { texto: "O treinamento aeróbico (3.6) tem duração de ___ a ___ min.", respostas: ["20", "60"], memo: "20–60 min." },
+  { texto: "O aquecimento articular inicia-se de baixo para cima, pelo lado ___.", respostas: ["esquerdo"], memo: "Esquerda primeiro." },
+  { texto: "A volta à calma dura de ___ a ___ minutos.", respostas: ["5", "15"], memo: "5–15 min." },
+  { texto: "O TFM, em condições excepcionais, deve ser feito no mínimo ___ vezes por semana.", respostas: ["3"], memo: "Mínimo 3x/sem." },
+  { texto: "O TAF-a deve ser realizado anualmente até ___ de outubro.", respostas: ["20"], memo: "20/out." },
+  { texto: "O Treinamento em Circuito deve conter de ___ a ___ estações.", respostas: ["6", "15"], memo: "6–15 estações." },
+];
+
+/* ---------- DEFINIÇÕES (dado o termo, escreva a definição) ---------- */
+const DEFINICOES = [
+  { termo: "Manobra de Valsalva", def: "Bloqueio da respiração que resulta em aumento da pressão arterial durante a execução dos exercícios.", resumo: "Prender a respiração → ↑PA.", memo: "Valsalva = bloqueio → pressão sobe.", dica: "Envolve a respiração." },
+  { termo: "Princípio da Individualidade Biológica", def: "Cada ser humano possui estrutura e formação física próprias (genótipo + fenótipo); um mesmo treino gera efeitos diferentes.", resumo: "Cada um é único.", memo: "Genótipo + fenótipo.", dica: "Ninguém é igual." },
+  { termo: "Princípio da Sobrecarga", def: "Os estímulos devem impor estresse crescente ao organismo; cargas constantes deixam de ter efeito positivo.", resumo: "Estresse crescente.", memo: "Aumentar volume ou intensidade.", dica: "Cargas constantes não evoluem." },
+  { termo: "Princípio da Continuidade", def: "Os efeitos do treinamento são transitórios e reversíveis, revertendo-se caso o indivíduo se torne inativo.", resumo: "Parou, perdeu.", memo: "Reversível.", dica: "Depende da constância." },
+  { termo: "Método Fartlek", def: "Método contínuo (predomínio do volume): corrida de distâncias e velocidades variáveis, com duração de 40 a 120 min.", resumo: "Jogo de corridas, 40–120 min.", memo: "Contínuo, variado.", dica: "Ritmos variados." },
+  { termo: "Método Fracionado", def: "Aplicação de um segundo estímulo após a recuperação quase total dos efeitos do primeiro.", resumo: "Recuperação quase total.", memo: "Quase total ≠ incompleta.", dica: "Diferente do intervalado." },
+  { termo: "Força Muscular", def: "Presença de uma resistência aplicada ao sistema neuromuscular.", resumo: "Resistência ao músculo.", memo: "Não precisa de aparelho sofisticado.", dica: "Neuromuscular." },
+  { termo: "Treinamento Funcional", def: "Método de força baseado no princípio da instabilidade mecânica, para gerar estímulo sensório-motor e trabalhar músculos estabilizadores.", resumo: "Instabilidade mecânica.", memo: "Estabilizadores.", dica: "Superfície instável." },
+  { termo: "Ginástica Preparatória Básica", def: "Parte da sessão que visa o aquecimento propriamente dito.", resumo: "Aquecimento.", memo: "Prepara o corpo.", dica: "Vem antes do esforço." },
+  { termo: "Volta à calma", def: "Alongamento passivo/estático ao final da sessão, com duração de 5 a 15 min, executando de 30 s a 1 min por grupamento muscular.", resumo: "5–15 min; 30 s–1 min/grupo.", memo: "Encerra a sessão.", dica: "Final da aula." },
+];
+
+/* ---------- CORRELACIONE (coluna A ↔ coluna B, com 1 resposta falsa "-") ---------- */
+const CORRELACIONE = [
+  {
+    titulo: "Princípios do Treinamento",
+    esquerda: ["Individualidade", "Sobrecarga", "Continuidade", "Especificidade"],
+    direita: ["Genótipo + fenótipo; cada um é único", "Estresse crescente; cargas constantes não evoluem", "Efeitos transitórios e reversíveis", "Correr para corrida, nadar para natação", "Aumentar a viscosidade sanguínea"],
+    // gabarito: índice na 'direita' para cada item da 'esquerda'; item falso não é usado
+    gabarito: [0, 1, 2, 3],
+    memo: "IASICE — Individualidade, Adaptação, Sobrecarga, Interdependência, Continuidade, Especificidade.",
+  },
+  {
+    titulo: "Métodos Cardiovasculares",
+    esquerda: ["Contínuo", "Intervalado", "Fracionado"],
+    direita: ["Predomínio do volume (Fartlek, Cross-promenade)", "Tiros/arrancadas com recuperação incompleta", "2º estímulo após recuperação quase total", "Treino exclusivo de musculação"],
+    gabarito: [0, 1, 2],
+    memo: "Contínuo=volume; Intervalado=incompleta; Fracionado=quase total." },
+  {
+    titulo: "Tipos de Força",
+    esquerda: ["Pura", "Dinâmica", "Explosiva", "RML"],
+    direita: ["Movimentos acíclicos, alta exigência", "Aumento da massa muscular", "Melhora da potência", "Tônus e resistência das fibras", "Redução da FC de repouso"],
+    gabarito: [0, 1, 2, 3],
+    memo: "Pura=acíclico; Dinâmica=massa; Explosiva=potência; RML=tônus." },
+  {
+    titulo: "Segurança e Números",
+    esquerda: ["Hidratação", "Repouso pós-refeição", "FC máxima", "Refeição pré-treino"],
+    direita: ["35 mL/kg", "2 horas", "220 − idade", "30 min antes", "500 metros"],
+    gabarito: [0, 1, 2, 3],
+    memo: "35 mL/kg; 2h; 220−idade; 30 min." },
+  {
+    titulo: "Legislação (TAF-A)",
+    esquerda: ["Prazo do TAF-a", "Desobrigação", "Frequência mínima do TFM", "Higidez física"],
+    direita: ["Até 20 de outubro", "50 anos ou mais", "3x por semana", "Comandante ou Diretor", "Instrutor de natação"],
+    gabarito: [0, 1, 2, 3],
+    memo: "20/out; ≥50 anos; 3x/sem; Comandante." },
+];
+
+/* ---------- CITE ---------- */
+const CITE = [
+  { p: "Cite os benefícios do aquecimento.", itens: ["Redução da viscosidade sanguínea", "Lubrificação das articulações", "Estímulo do sistema energético a ser solicitado"], resumo: "Sangue, articulações, energia.", memo: "Viscosidade↓ + lubrifica + energia." },
+  { p: "Cite as medidas de segurança no trabalho de força.", itens: ["Técnica adequada de levantamento", "Evitar elevar pesos acima do prescrito", "Respiração correta (evitar Valsalva)"], resumo: "Técnica, peso, respiração.", memo: "3 medidas de força." },
+  { p: "Cite os 6 princípios do treinamento físico.", itens: ["Individualidade Biológica", "Adaptação", "Sobrecarga", "Interdependência Volume-Intensidade", "Continuidade", "Especificidade"], resumo: "IASICE.", memo: "I-A-S-I-C-E." },
+  { p: "Cite os métodos de treinamento cardiovascular.", itens: ["Contínuo", "Intervalado", "Fracionado"], resumo: "C-I-F.", memo: "Contínuo, Intervalado, Fracionado." },
+  { p: "Cite os exemplos do método contínuo.", itens: ["Fartlek", "Cross-promenade"], resumo: "Fartlek e Cross-promenade.", memo: "Os dois contínuos." },
+  { p: "Cite os benefícios do treino cardiovascular.", itens: ["Redução da gordura corporal", "Redução da pressão arterial e riscos cardíacos", "Maior utilização de gordura como fonte energética", "Aumento da economia de movimento"], resumo: "Gordura↓, PA↓, +energia, +economia.", memo: "4 benefícios." },
+  { p: "Cite os tipos de força.", itens: ["Pura", "Dinâmica", "Explosiva", "Resistência Muscular Localizada (RML)"], resumo: "P-D-E-RML.", memo: "4 tipos." },
+  { p: "Cite os métodos de treinamento de força.", itens: ["Circuito", "TRM (Resistência Muscular)", "Funcional", "Musculação"], resumo: "C-T-F-M.", memo: "4 métodos." },
+  { p: "Cite 3 critérios para a condução de uma aula de TFM.", itens: ["Uniforme", "Postura", "Voz de comando", "Ser claro", "Segurança"], resumo: "U-P-V-C-S.", memo: "5 critérios (cite 3)." },
+  { p: "Cite as expressões verbais que devem ser evitadas.", itens: ["Abrir", "Fechar", "Dobrar"], resumo: "A-F-D.", memo: "Evitar abrir/fechar/dobrar." },
+];
+
+/* ---------- LISTE ---------- */
+const LISTE = [
+  { p: "Liste, na ordem, as 6 partes de uma sessão de exercícios (cap 3).", itens: ["Aquecimento articular geral", "Exercícios de alongamento", "Aquecimento dos grupos musculares da atividade principal", "Treinamento aeróbico", "Exercícios neuromusculares", "Volta à calma"], resumo: "Articular→alongar→grupos→aeróbio→neuro→calma.", memo: "6 partes em ordem." },
+  { p: "Liste as normas de execução de exercícios cardiovasculares.", itens: ["Não executar após almoço e jantar", "Permanecer 3 semanas em cada nível", "Executar aquecimento, ginástica preparatória e volta à calma", "Ingerir água antes e depois", "Medir a FC antes e imediatamente após"], resumo: "5 normas.", memo: "Refeição, níveis, aquecer, água, FC." },
+  { p: "Liste os fatores de influência nos treinos.", itens: ["Nível inicial (individualidade)", "Intensidade (sobrecarga)", "Volume de treinamento (sobrecarga)", "Frequência semanal", "Método de treinamento"], resumo: "5 fatores.", memo: "Nível, intensidade, volume, frequência, método." },
+  { p: "Liste as variáveis do treinamento de força.", itens: ["Ordem dos exercícios", "Velocidade de execução", "Número de séries", "Número de repetições", "Sobrecarga utilizada", "Período de recuperação"], resumo: "6 variáveis.", memo: "Ordem, velocidade, séries, repetições, carga, recuperação." },
+  { p: "Liste as modalidades do TAF-a para o CFN.", itens: ["Corrida", "Natação", "Permanência dentro da água", "Flexão na barra (homens) / flexão de braços no solo", "Abdominal"], resumo: "5 modalidades, 3 dias não consecutivos.", memo: "Corrida, natação, permanência, barra, abdominal." },
+];
+
+/* ---------- V ou F (por itens) ---------- */
+const VOUF = [
+  {
+    titulo: "Cardiovascular",
+    itens: [
+      { t: "Fartlek e Cross-promenade são exemplos de método contínuo.", v: true },
+      { t: "É correto aumentar a velocidade da corrida ao mesmo tempo que a distância.", v: false },
+      { t: "O método intervalado é composto de tiros, arrancadas e gestos esportivos.", v: true },
+      { t: "O método fracionado prevê o 2º estímulo sem a recuperação total do anterior.", v: false },
+    ],
+    memo: "V-F-V-F. Contínuo (Fartlek/Cross); intervalado (tiros); fracionado (recuperação quase total)." },
+  {
+    titulo: "Segurança e Higiene",
+    itens: [
+      { t: "Deve-se repousar 2 horas após uma grande refeição.", v: true },
+      { t: "Treinar em jejum favorece o emagrecimento com segurança.", v: false },
+      { t: "A hidratação recomendada é de 35 mL/kg.", v: true },
+      { t: "A Manobra de Valsalva diminui a pressão arterial.", v: false },
+    ],
+    memo: "V-F-V-F. Jejum é perigoso; Valsalva aumenta a PA." },
+  {
+    titulo: "Ginástica e Condução",
+    itens: [
+      { t: "O aquecimento articular inicia de baixo para cima.", v: true },
+      { t: "No unilateral, inicia-se pelo lado direito.", v: false },
+      { t: "A volta à calma dura de 5 a 15 minutos.", v: true },
+      { t: "As expressões 'abrir, fechar e dobrar' devem ser usadas.", v: false },
+    ],
+    memo: "V-F-V-F. Esquerda primeiro; evitar abrir/fechar/dobrar." },
+  {
+    titulo: "Legislação",
+    itens: [
+      { t: "O TFM é diário; excepcionalmente, mínimo 3x/semana.", v: true },
+      { t: "Militares com 45 anos ficam desobrigados do TAF-a.", v: false },
+      { t: "O TAF-a deve ser realizado até 20 de outubro.", v: true },
+      { t: "O Comandante/Diretor é responsável pela higidez física.", v: true },
+    ],
+    memo: "V-F-V-V. Desobrigação é aos 50 anos." },
+];
+
+/* ---------- COMPLETE (dado o termo, complete a frase) ---------- */
+const COMPLETE = [
+  { termo: "FCM = 220 − ...", resposta: "idade", memo: "220 − idade." },
+  { termo: "Hidratação: ... mL/kg", resposta: "35", memo: "35 mL/kg." },
+  { termo: "Repouso após grande refeição: ... horas", resposta: "2", memo: "2 horas." },
+  { termo: "Refeição leve: ... minutos antes", resposta: "30", memo: "30 min antes." },
+  { termo: "Corrida: pelo menos ... vezes/semana", resposta: "2", memo: "2x/semana." },
+  { termo: "Natação: nadar pelo menos ... metros", resposta: "500", memo: "500 m." },
+  { termo: "Circuito: de 6 a ... estações", resposta: "15", memo: "6–15 estações." },
+  { termo: "Aeróbico (3.6): de 20 a ... min", resposta: "60", memo: "20–60 min." },
+  { termo: "Aquecimento articular unilateral inicia pela ...", resposta: "esquerda", memo: "Esquerda primeiro." },
+  { termo: "TAF-a: até ... de outubro", resposta: "20", memo: "20/out." },
+  { termo: "Desobrigação do TAF-a: ... anos ou mais", resposta: "50", memo: "≥50 anos." },
+  { termo: "TFM excepcional: mínimo ... vezes/semana", resposta: "3", memo: "Mín. 3x/sem." },
+];
+
+/* ---------- MNEMÔNICOS / PALÁCIO DA MEMÓRIA ---------- */
+const MNEMONICOS = [
+  {
+    titulo: "6 Princípios do Treinamento — 'IASICE'",
+    tipo: "Sigla",
+    conteudo: "Individualidade · Adaptação · Sobrecarga · Interdependência · Continuidade · Especificidade. Frase: «Isabela Adora Sorvete, Inclusive Chocolate E morango».",
+  },
+  {
+    titulo: "Critérios de Condução — 'UPVCS'",
+    tipo: "Sigla",
+    conteudo: "Uniforme · Postura · Voz de comando · (ser) Claro · Segurança. Frase: «Um Ótimo Vigia Cuida da Segurança».",
+  },
+  {
+    titulo: "Benefícios do Aquecimento — 'VLE'",
+    tipo: "Sigla/Rima",
+    conteudo: "Viscosidade (reduz) · Lubrifica (articulações) · Estimula (sistema energético). Rima: «Sangue mais fino, junta lubrificada e energia a postos».",
+  },
+  {
+    titulo: "Expressões PROIBIDAS — 'AFD'",
+    tipo: "Sigla",
+    conteudo: "Abrir · Fechar · Dobrar. Lembre: as três 'perigosas' que o instrutor NÃO fala. Use no lugar: afastar, aproximar, flexionar, estender.",
+  },
+  {
+    titulo: "Métodos Cardiovasculares — 'CIF'",
+    tipo: "Sigla",
+    conteudo: "Contínuo (volume: Fartlek/Cross) · Intervalado (recuperação incompleta) · Fracionado (recuperação quase total). «CIF: do mais longo ao mais recuperado».",
+  },
+  {
+    titulo: "Métodos de Força — 'C-T-F-M'",
+    tipo: "Sigla",
+    conteudo: "Circuito · TRM · Funcional · Musculação. «Cada Treino Fica Melhor».",
+  },
+  {
+    titulo: "Números-chave — Visualização & Associação",
+    tipo: "Números",
+    conteudo: "35 mL/kg (hidratação) · 2h (pós-refeição) · 30 min (refeição leve) · 220−idade (FCM) · 500 m (natação) · 20/out (TAF-a) · 50 anos (desobrigação) · 3x (TFM mínimo).",
+  },
+  {
+    titulo: "Palácio da Memória — Roteiro da OM",
+    tipo: "Palácio da Memória",
+    conteudo: "Imagine sua OM: (1) PORTÃO = 'Saúde é bem-estar físico e mental'; (2) REFEITÓRIO = alimentação (2h, jejum não, 30 min, 35 mL/kg); (3) SALA DE MUSCULAÇÃO = força (técnica, peso, respiração/Valsalva); (4) PISTA = cardiovascular (220−idade, métodos CIF); (5) PÁTIO = ginástica (baixo→cima, esquerda, volta à calma 5–15 min); (6) SECRETARIA = legislação (TAF-a 20/out, 50 anos, CPesFN).",
+  },
+];
+
+/* ---------- PEGADINHAS ---------- */
+const PEGADINHAS = [
+  "TAF-a é até 20/out; o ENVIO do resultado é até 31/out. Não troque as datas.",
+  "Método CONTÍNUO = predomínio do VOLUME (não da intensidade).",
+  "Aquecimento articular unilateral começa pela ESQUERDA (não pela direita).",
+  "Corrida e natação: pelo menos 2x/semana (não 3x).",
+  "Fracionado = recuperação QUASE TOTAL; Intervalado = recuperação INCOMPLETA. Não confunda.",
+  "Manobra de Valsalva AUMENTA a pressão arterial (não reduz).",
+  "Força DINÂMICA → massa; EXPLOSIVA → potência. Cuidado ao inverter.",
+  "Desobrigação do TAF-a é aos 50 anos (não 45 nem 55).",
+  "Aeróbio 'componentes essenciais' = 15–60 min; treinamento aeróbico (3.6) = 20–60 min.",
+  "Volta à calma: 5–15 min no total, mas 30 s–1 min por grupamento muscular.",
+];
+
+
+/* ==========================================================================
+   NÚCLEO DE UI — estilos, persistência, primitivas e motor de quiz
+   ========================================================================== */
+const { useState, useEffect, useRef, useMemo } = React;
+
+/* ---------- Persistência (localStorage) — sobrevive a navegação e reload ---------- */
+const STORE_PREFIX = "tfmcfn2026:";
+function loadStore(key, fallback) {
+  try {
+    const raw = localStorage.getItem(STORE_PREFIX + key);
+    return raw != null ? JSON.parse(raw) : fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+function saveStore(key, value) {
+  try {
+    localStorage.setItem(STORE_PREFIX + key, JSON.stringify(value));
+  } catch (e) {}
+}
+function usePersist(key, initial) {
+  const [state, setState] = useState(() => loadStore(key, initial));
+  useEffect(() => {
+    saveStore(key, state);
+  }, [key, state]);
+  return [state, setState];
+}
+function range(n) {
+  return Array.from({ length: n }, (_, i) => i);
+}
+
+/* ---------- Paleta / estilos ---------- */
+const C = {
+  bg: "#0a1628",
+  bg2: "#0e1d34",
+  card: "#122844",
+  card2: "#0f2138",
+  border: "#1f3a5c",
+  text: "#e8edf4",
+  dim: "#9fb2cc",
+  gold: "#c6a63c",
+  goldSoft: "#e0c766",
+  olive: "#3f7a5f",
+  green: "#2fae6a",
+  greenBg: "#123a2a",
+  red: "#e0554f",
+  redBg: "#3a1616",
+  blue: "#4a90d9",
+};
+const S = {
+  page: { background: C.bg, color: C.text, minHeight: "100vh", fontFamily: "'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif" },
+  container: { maxWidth: 920, margin: "0 auto", padding: "0 16px 60px" },
+  card: { background: C.card, border: "1px solid " + C.border, borderRadius: 14, padding: 18, marginBottom: 14, boxShadow: "0 2px 10px rgba(0,0,0,.25)" },
+  h1: { fontSize: 22, fontWeight: 800, margin: "0 0 4px", color: C.text },
+  h2: { fontSize: 18, fontWeight: 800, margin: "14px 0 8px", color: C.goldSoft },
+  h3: { fontSize: 15, fontWeight: 700, margin: "0 0 6px", color: C.gold },
+  p: { fontSize: 15, lineHeight: 1.6, color: C.text, margin: "0 0 10px" },
+  dim: { color: C.dim, fontSize: 13 },
+  btn: { background: C.gold, color: "#20180a", border: "none", borderRadius: 10, padding: "10px 16px", fontWeight: 700, fontSize: 14, cursor: "pointer", margin: "4px 6px 4px 0" },
+  btnGhost: { background: "transparent", color: C.text, border: "1px solid " + C.border, borderRadius: 10, padding: "10px 16px", fontWeight: 600, fontSize: 14, cursor: "pointer", margin: "4px 6px 4px 0" },
+  btnSm: { background: "transparent", color: C.dim, border: "1px solid " + C.border, borderRadius: 8, padding: "6px 12px", fontWeight: 600, fontSize: 13, cursor: "pointer", margin: "4px 6px 4px 0" },
+  input: { width: "100%", boxSizing: "border-box", background: C.bg2, color: C.text, border: "1px solid " + C.border, borderRadius: 10, padding: "12px 14px", fontSize: 15, fontFamily: "inherit" },
+  chip: { display: "inline-block", background: C.card2, border: "1px solid " + C.border, borderRadius: 20, padding: "4px 12px", fontSize: 12, color: C.dim, margin: "0 6px 6px 0" },
+};
+
+/* ---------- Primitivas ---------- */
+function Bar({ done, total }) {
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  return (
+    <div style={{ background: C.card2, borderRadius: 10, height: 10, overflow: "hidden", margin: "8px 0 14px" }}>
+      <div style={{ width: pct + "%", height: "100%", background: "linear-gradient(90deg," + C.olive + "," + C.gold + ")", transition: "width .3s" }} />
+    </div>
+  );
+}
+function Counter({ pos, total, extra }) {
+  return (
+    <div style={{ ...S.dim, display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+      <span>Questão <b style={{ color: C.text }}>{pos + 1}</b> de {total}</span>
+      <span>{extra}</span>
+    </div>
+  );
+}
+function Hint({ text, show, onToggle }) {
+  return (
+    <div style={{ marginTop: 8 }}>
+      <button style={S.btnSm} onClick={onToggle}>💡 {show ? "Ocultar dica" : "Dica"}</button>
+      {show && <div style={{ background: C.card2, border: "1px dashed " + C.gold, borderRadius: 10, padding: "10px 12px", marginTop: 6, fontSize: 14, color: C.goldSoft }}>{text}</div>}
+    </div>
+  );
+}
+function MemoBox({ children, label }) {
+  return (
+    <div style={{ background: C.greenBg, border: "1px solid " + C.green, borderRadius: 10, padding: "10px 12px", marginTop: 10 }}>
+      <div style={{ fontSize: 12, fontWeight: 700, color: C.green, marginBottom: 4 }}>🧠 {label || "Dica de memorização"}</div>
+      <div style={{ fontSize: 14, color: C.text }}>{children}</div>
+    </div>
+  );
+}
+function GabaritoBox({ children, label, tone }) {
+  const col = tone === "resumo" ? C.blue : C.gold;
+  return (
+    <div style={{ background: C.card2, border: "1px solid " + col, borderRadius: 10, padding: "10px 12px", marginTop: 10 }}>
+      <div style={{ fontSize: 12, fontWeight: 700, color: col, marginBottom: 4 }}>{label}</div>
+      <div style={{ fontSize: 14, color: C.text, lineHeight: 1.55 }}>{children}</div>
+    </div>
+  );
+}
+
+/* ---------- Motor de quiz genérico ---------- */
+/* results: { [idx]: { answered, correct, user, marked } } */
+function useQuiz(total, key) {
+  const [order, setOrder] = usePersist(key + ":order", range(total));
+  const [pos, setPos] = usePersist(key + ":pos", 0);
+  const [results, setResults] = usePersist(key + ":res", {});
+  const [finished, setFinished] = usePersist(key + ":fin", false);
+
+  const idx = order[Math.min(pos, order.length - 1)];
+  const cur = results[idx] || {};
+
+  function record(data) {
+    setResults((r) => ({ ...r, [idx]: { ...(r[idx] || {}), ...data } }));
+  }
+  function toggleMark() {
+    setResults((r) => ({ ...r, [idx]: { ...(r[idx] || {}), marked: !(r[idx] && r[idx].marked) } }));
+  }
+  function next() {
+    if (pos < order.length - 1) setPos(pos + 1);
+    else setFinished(true);
+  }
+  function prev() {
+    if (finished) { setFinished(false); return; }
+    if (pos > 0) setPos(pos - 1);
+  }
+  function restartAll() {
+    setOrder(range(total)); setPos(0); setResults({}); setFinished(false);
+  }
+  function redoSubset(indices) {
+    if (!indices.length) return;
+    setOrder(indices);
+    setPos(0);
+    setResults((r) => {
+      const nr = { ...r };
+      indices.forEach((i) => { delete nr[i]; });
+      return nr;
+    });
+    setFinished(false);
+  }
+  const wrong = Object.keys(results).filter((k) => results[k].answered && results[k].correct === false).map(Number);
+  const marked = Object.keys(results).filter((k) => results[k].marked).map(Number);
+  const answeredCount = Object.keys(results).filter((k) => results[k].answered).length;
+
+  return { order, pos, idx, cur, finished, record, toggleMark, next, prev, restartAll, redoSubset, wrong, marked, answeredCount, setFinished };
+}
+
+/* ---------- Cartão de fim de questionário (reutilizável) ---------- */
+function FinalCard({ q, resultsAll, scored, onRedoAll }) {
+  const answered = q.order.filter((i) => resultsAll[i] && resultsAll[i].answered);
+  const correct = q.order.filter((i) => resultsAll[i] && resultsAll[i].correct === true).length;
+  const wrong = q.wrong;
+  const marked = q.marked;
+  return (
+    <div style={S.card}>
+      <h2 style={{ ...S.h2, marginTop: 0 }}>✅ Questionário concluído!</h2>
+      {scored ? (
+        <p style={S.p}>Você acertou <b style={{ color: C.green }}>{correct}</b> de <b>{answered.length}</b> respondidas.</p>
+      ) : (
+        <p style={S.p}>Você respondeu <b>{answered.length}</b> de <b>{q.order.length}</b>.</p>
+      )}
+      <div>
+        {scored && wrong.length > 0 && (
+          <button style={{ ...S.btn, background: C.red, color: "#fff" }} onClick={() => q.redoSubset(wrong)}>🔁 Refazer erradas ({wrong.length})</button>
+        )}
+        {marked.length > 0 && (
+          <button style={{ ...S.btn, background: C.blue, color: "#fff" }} onClick={() => q.redoSubset(marked)}>🔁 Refazer marcadas ({marked.length})</button>
+        )}
+        <button style={S.btnGhost} onClick={() => { q.restartAll(); onRedoAll && onRedoAll(); }}>↺ Recomeçar tudo</button>
+        <button style={S.btnGhost} onClick={() => q.setFinished(false)}>← Revisar respostas</button>
+      </div>
+    </div>
+  );
+}
+
+
+/* ==========================================================================
+   TELAS DE CONTEÚDO
+   ========================================================================== */
+
+/* ---------- INÍCIO ---------- */
+function Home({ go }) {
+  const atalhos = [
+    ["superresumo", "⚡ Super Resumo", "Tópicos rápidos para revisão relâmpago"],
+    ["resumo", "📘 Resumo Completo", "A matéria inteira, por blocos"],
+    ["mapa", "🧭 Mapa Mental", "Árvore interativa e expansível"],
+    ["flashcards", "🎴 Flashcards", "Frente/verso com sabia / não sabia"],
+    ["consulta", "🔎 Consulta", "Busque qualquer termo do conteúdo"],
+    ["padrao", "📄 Questões Padrão", "As 46 questões do próprio material"],
+    ["multipla", "🔘 Múltipla Escolha", "5 alternativas por questão"],
+    ["certo", "⚖️ Certo ou Errado", "Justifique as que julgar erradas"],
+    ["lacunas", "✏️ Complete as Lacunas", "Preencha os espaços"],
+    ["definicoes", "📚 Definições", "Dado o termo, escreva a definição"],
+    ["correlacione", "🔗 Correlacione", "Colunas A e B (com pegadinha)"],
+    ["cite", "📝 Cite", "Liste os itens pedidos"],
+    ["liste", "📋 Liste", "Sequências e enumerações"],
+    ["vouf", "✔️ V ou F", "Verdadeiro ou falso por item"],
+    ["complete", "🧩 Complete", "Dado o termo, complete"],
+    ["mnemonicos", "🧠 Mnemônicos", "Siglas, palácio da memória e pegadinhas"],
+  ];
+  return (
+    <div>
+      <div style={{ ...S.card, background: "linear-gradient(135deg,#0e2340,#122844)", borderColor: C.gold }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <div style={{ width: 56, height: 56, borderRadius: 14, background: C.bg, border: "2px solid " + C.gold, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, color: C.goldSoft, fontSize: 18 }}>TFM</div>
+          <div>
+            <h1 style={S.h1}>Estudos TFM — CGCFN-108</h1>
+            <div style={S.dim}>Treinamento Físico Militar · Marinha do Brasil / CFN · 2026</div>
+          </div>
+        </div>
+        <p style={{ ...S.p, marginTop: 12 }}>App de estudos gerado 100% a partir do seu material e do direcionamento do professor. Seu progresso é salvo automaticamente no aparelho — pode navegar à vontade sem perder nada.</p>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))", gap: 12 }}>
+        {atalhos.map(([id, t, d]) => (
+          <div key={id} style={{ ...S.card, marginBottom: 0, cursor: "pointer" }} onClick={() => go(id)}>
+            <h3 style={{ ...S.h3, color: C.goldSoft }}>{t}</h3>
+            <div style={S.dim}>{d}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ---------- SUPER RESUMO ---------- */
+function SuperResumo() {
+  return (
+    <div>
+      <h1 style={S.h1}>⚡ Super Resumo</h1>
+      <p style={S.dim}>Tópicos essenciais para revisão rápida antes da prova.</p>
+      {SUPER_RESUMO.map((b, i) => (
+        <div key={i} style={S.card}>
+          <h3 style={S.h3}>{b.bloco}</h3>
+          <ul style={{ margin: "6px 0 0", paddingLeft: 20 }}>
+            {b.itens.map((t, j) => (
+              <li key={j} style={{ fontSize: 14.5, lineHeight: 1.6, marginBottom: 6, color: C.text }}>{t}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ---------- RESUMO COMPLETO ---------- */
+function Resumo() {
+  const [open, setOpen] = usePersist("resumo:open", 0);
+  return (
+    <div>
+      <h1 style={S.h1}>📘 Resumo Completo por Blocos</h1>
+      <p style={S.dim}>Toque em um bloco para expandir.</p>
+      {RESUMO_BLOCOS.map((b, i) => (
+        <div key={i} style={S.card}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer" }} onClick={() => setOpen(open === i ? -1 : i)}>
+            <h3 style={{ ...S.h3, margin: 0 }}>{b.titulo}</h3>
+            <span style={{ color: C.gold, fontSize: 18 }}>{open === i ? "−" : "+"}</span>
+          </div>
+          {open === i && (
+            <div style={{ marginTop: 10 }}>
+              {b.paragrafos.map((p, j) => (
+                <p key={j} style={S.p}>{p}</p>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ---------- MAPA MENTAL (interativo/expansível) ---------- */
+function MapNode({ node, depth, path, openSet, toggle }) {
+  const has = node.filhos && node.filhos.length > 0;
+  const isOpen = openSet[path];
+  const colors = [C.gold, C.olive, C.blue, C.goldSoft];
+  const col = colors[depth % colors.length];
+  return (
+    <div style={{ marginLeft: depth === 0 ? 0 : 16, marginTop: 4 }}>
+      <div
+        onClick={() => has && toggle(path)}
+        style={{
+          display: "flex", alignItems: "center", gap: 8, cursor: has ? "pointer" : "default",
+          background: depth === 0 ? "linear-gradient(90deg,#12345c,#122844)" : C.card2,
+          border: "1px solid " + (depth === 0 ? C.gold : C.border),
+          borderLeft: "4px solid " + col,
+          borderRadius: 10, padding: depth === 0 ? "12px 14px" : "9px 12px", marginBottom: 4,
+        }}
+      >
+        {has && <span style={{ color: col, fontWeight: 800, width: 14 }}>{isOpen ? "▾" : "▸"}</span>}
+        {!has && <span style={{ color: col, width: 14, textAlign: "center" }}>•</span>}
+        <span style={{ fontSize: depth === 0 ? 16 : 14.5, fontWeight: depth <= 1 ? 700 : 500, color: C.text }}>{node.nome}</span>
+      </div>
+      {has && isOpen && (
+        <div style={{ borderLeft: "1px dashed " + C.border, marginLeft: 6 }}>
+          {node.filhos.map((f, i) => (
+            <MapNode key={i} node={f} depth={depth + 1} path={path + "." + i} openSet={openSet} toggle={toggle} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+function MapaMental() {
+  const [openSet, setOpenSet] = usePersist("mapa:open", { "0": true });
+  function toggle(path) {
+    setOpenSet((s) => ({ ...s, [path]: !s[path] }));
+  }
+  function expandAll(val) {
+    const all = {};
+    function walk(node, path) {
+      all[path] = val;
+      (node.filhos || []).forEach((f, i) => walk(f, path + "." + i));
+    }
+    walk(MAPA_MENTAL, "0");
+    setOpenSet(all);
+  }
+  return (
+    <div>
+      <h1 style={S.h1}>🧭 Mapa Mental Interativo</h1>
+      <div style={{ marginBottom: 12 }}>
+        <button style={S.btnSm} onClick={() => expandAll(true)}>Expandir tudo</button>
+        <button style={S.btnSm} onClick={() => expandAll(false)}>Recolher tudo</button>
+      </div>
+      <div style={S.card}>
+        <MapNode node={MAPA_MENTAL} depth={0} path="0" openSet={openSet} toggle={toggle} />
+      </div>
+    </div>
+  );
+}
+
+/* ---------- CONSULTA (busca) ---------- */
+function highlight(text, term) {
+  if (!term) return text;
+  const parts = text.split(new RegExp("(" + term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi"));
+  return parts.map((p, i) =>
+    p.toLowerCase() === term.toLowerCase() ? <mark key={i} style={{ background: C.gold, color: "#20180a", borderRadius: 3, padding: "0 2px" }}>{p}</mark> : p
+  );
+}
+function Consulta() {
+  const [term, setTerm] = usePersist("consulta:term", "");
+  const t = term.trim().toLowerCase();
+  const res = CONSULTA.filter((x) => !t || x.t.toLowerCase().includes(t) || x.c.toLowerCase().includes(t));
+  return (
+    <div>
+      <h1 style={S.h1}>🔎 Consulta do Conteúdo</h1>
+      <p style={S.dim}>Digite uma palavra (ex.: "valsalva", "natação", "FCM", "aquecimento").</p>
+      <input style={{ ...S.input, marginBottom: 14 }} placeholder="Buscar por palavra..." value={term} onChange={(e) => setTerm(e.target.value)} />
+      <div style={S.dim}>{res.length} resultado(s)</div>
+      {res.map((x, i) => (
+        <div key={i} style={S.card}>
+          <h3 style={S.h3}>{highlight(x.t, term.trim())}</h3>
+          <p style={{ ...S.p, margin: 0 }}>{highlight(x.c, term.trim())}</p>
+        </div>
+      ))}
+      {res.length === 0 && <div style={S.card}>Nenhum resultado. Tente outra palavra.</div>}
+    </div>
+  );
+}
+
+/* ---------- QUESTÕES PADRÃO ---------- */
+function QuestoesPadrao() {
+  const [reveal, setReveal] = usePersist("padrao:reveal", {});
+  const [allOpen, setAllOpen] = usePersist("padrao:all", false);
+  return (
+    <div>
+      <h1 style={S.h1}>📄 Questões Padrão</h1>
+      <p style={S.dim}>As {QUESTOES_PADRAO.length} questões do próprio material, sem alterações.</p>
+      <div style={{ marginBottom: 12 }}>
+        <button style={S.btnSm} onClick={() => setAllOpen(!allOpen)}>{allOpen ? "Ocultar todas as respostas" : "Mostrar todas as respostas"}</button>
+      </div>
+      {QUESTOES_PADRAO.map((q) => {
+        const show = allOpen || reveal[q.n];
+        return (
+          <div key={q.n} style={S.card}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: C.text }}>{q.n}. {q.p}</div>
+            {show ? (
+              <GabaritoBox label="RESPOSTA">{q.r}</GabaritoBox>
+            ) : (
+              <button style={{ ...S.btnSm, marginTop: 8 }} onClick={() => setReveal((r) => ({ ...r, [q.n]: true }))}>Ver resposta</button>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ---------- FLASHCARDS ---------- */
+function Flashcards() {
+  const total = FLASHCARDS.length;
+  const [order, setOrder] = usePersist("fc:order", range(total));
+  const [pos, setPos] = usePersist("fc:pos", 0);
+  const [flipped, setFlipped] = usePersist("fc:flip", false);
+  const [status, setStatus] = usePersist("fc:status", {}); // idx -> 'sabia'|'nao'
+  const [showHint, setShowHint] = usePersist("fc:hint", false);
+  const [picking, setPicking] = usePersist("fc:pick", true);
+
+  const idx = order[Math.min(pos, order.length - 1)];
+  const card = FLASHCARDS[idx];
+  const naoSabia = Object.keys(status).filter((k) => status[k] === "nao").map(Number);
+  const sabia = Object.keys(status).filter((k) => status[k] === "sabia").length;
+
+  function mark(v) {
+    setStatus((s) => ({ ...s, [idx]: v }));
+    setTimeout(() => nextCard(), 120);
+  }
+  function nextCard() {
+    setFlipped(false); setShowHint(false);
+    if (pos < order.length - 1) setPos(pos + 1);
+  }
+  function prevCard() {
+    setFlipped(false); setShowHint(false);
+    if (pos > 0) setPos(pos - 1);
+  }
+  function startFrom(i) {
+    setOrder(range(total)); setPos(i); setFlipped(false); setShowHint(false); setPicking(false);
+  }
+  function reviewNao() {
+    if (!naoSabia.length) return;
+    setOrder(naoSabia); setPos(0); setFlipped(false); setShowHint(false); setStatus((s) => {
+      const ns = { ...s }; naoSabia.forEach((i) => delete ns[i]); return ns;
+    }); setPicking(false);
+  }
+  function restart() {
+    setOrder(range(total)); setPos(0); setFlipped(false); setStatus({}); setShowHint(false); setPicking(false);
+  }
+
+  if (picking) {
+    return (
+      <div>
+        <h1 style={S.h1}>🎴 Flashcards</h1>
+        <p style={S.dim}>Escolha a partir de qual flashcard começar:</p>
+        <div style={S.card}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(46px,1fr))", gap: 8 }}>
+            {FLASHCARDS.map((c, i) => (
+              <button key={i} title={c.f} style={{ ...S.btnSm, margin: 0, textAlign: "center" }} onClick={() => startFrom(i)}>{i + 1}</button>
+            ))}
+          </div>
+          <button style={{ ...S.btn, marginTop: 14 }} onClick={() => startFrom(0)}>Começar do 1</button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <h1 style={S.h1}>🎴 Flashcards</h1>
+      <Counter pos={pos} total={order.length} extra={"✔ " + sabia + "  ✖ " + naoSabia.length} />
+      <Bar done={pos} total={order.length} />
+      <div
+        onClick={() => setFlipped(!flipped)}
+        style={{
+          ...S.card, minHeight: 170, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",
+          textAlign: "center", cursor: "pointer", borderColor: flipped ? C.green : C.gold,
+          background: flipped ? "linear-gradient(135deg,#123a2a,#0f2138)" : "linear-gradient(135deg,#12345c,#122844)",
+        }}
+      >
+        <div style={{ ...S.dim, marginBottom: 8 }}>{flipped ? "VERSO (resposta)" : "FRENTE — toque para virar"}</div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: C.text, padding: "0 6px" }}>{flipped ? card.v : card.f}</div>
+        {flipped && (
+          <div style={{ marginTop: 12, width: "100%" }}>
+            <GabaritoBox label="DEFINIÇÃO RESUMIDA" tone="resumo">{card.def}</GabaritoBox>
+            <MemoBox>{card.dica}</MemoBox>
+          </div>
+        )}
+      </div>
+      <Hint text={card.dica} show={showHint} onToggle={() => setShowHint(!showHint)} />
+      <div style={{ marginTop: 12 }}>
+        <button style={S.btnGhost} onClick={prevCard} disabled={pos === 0}>← Anterior</button>
+        {!flipped && <button style={S.btn} onClick={() => setFlipped(true)}>Ver resposta</button>}
+        {flipped && <button style={{ ...S.btn, background: C.green, color: "#fff" }} onClick={() => mark("sabia")}>✔ Sabia</button>}
+        {flipped && <button style={{ ...S.btn, background: C.red, color: "#fff" }} onClick={() => mark("nao")}>✖ Não sabia</button>}
+        <button style={S.btnGhost} onClick={nextCard} disabled={pos >= order.length - 1}>Pular →</button>
+      </div>
+      <div style={{ marginTop: 14 }}>
+        <button style={S.btnSm} onClick={reviewNao} disabled={!naoSabia.length}>🔁 Rever "não sabia" ({naoSabia.length})</button>
+        <button style={S.btnSm} onClick={() => setPicking(true)}>🎯 Escolher card inicial</button>
+        <button style={S.btnSm} onClick={restart}>↺ Recomeçar</button>
+      </div>
+    </div>
+  );
+}
+
+
+/* ==========================================================================
+   TIPOS DE EXERCÍCIO
+   ========================================================================== */
+
+/* barra de navegação inferior compartilhada (voltar / marcar) */
+function NavRow({ q, children }) {
+  const marked = q.cur && q.cur.marked;
+  return (
+    <div style={{ marginTop: 12 }}>
+      <button style={S.btnGhost} onClick={q.prev} disabled={q.pos === 0 && !q.finished}>← Anterior</button>
+      {children}
+      <button style={{ ...S.btnSm, borderColor: marked ? C.blue : C.border, color: marked ? C.blue : C.dim }} onClick={q.toggleMark}>
+        {marked ? "★ Marcada" : "☆ Marcar p/ refazer"}
+      </button>
+    </div>
+  );
+}
+
+/* ---------- MÚLTIPLA ESCOLHA ---------- */
+function Multipla() {
+  const q = useQuiz(MULTIPLA.length, "mult");
+  const [showHint, setShowHint] = useState(false);
+  useEffect(() => { setShowHint(false); }, [q.idx, q.finished]);
+  if (q.finished) return <div><h1 style={S.h1}>🔘 Múltipla Escolha</h1><FinalCard q={q} resultsAll={loadStore("mult:res", {})} scored /></div>;
+  const item = MULTIPLA[q.idx];
+  const answered = q.cur.answered;
+  const chosen = q.cur.user;
+  function confirm() {
+    if (chosen == null) return;
+    q.record({ answered: true, correct: chosen === item.correta });
+  }
+  return (
+    <div>
+      <h1 style={S.h1}>🔘 Múltipla Escolha</h1>
+      <Counter pos={q.pos} total={q.order.length} />
+      <Bar done={q.answeredCount} total={MULTIPLA.length} />
+      <div style={S.card}>
+        <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 12 }}>{item.p}</div>
+        {item.a.map((alt, i) => {
+          const isChosen = chosen === i;
+          const isCorrect = i === item.correta;
+          let bg = C.card2, bd = C.border, cl = C.text;
+          if (answered) {
+            if (isCorrect) { bg = C.greenBg; bd = C.green; }
+            else if (isChosen) { bg = C.redBg; bd = C.red; }
+          } else if (isChosen) { bd = C.gold; bg = "#12345c"; }
+          return (
+            <div key={i} onClick={() => !answered && q.record({ user: i })}
+              style={{ background: bg, border: "1px solid " + bd, borderRadius: 10, padding: "11px 14px", marginBottom: 8, cursor: answered ? "default" : "pointer", display: "flex", gap: 10 }}>
+              <b style={{ color: C.gold }}>{String.fromCharCode(65 + i)}</b>
+              <span style={{ color: cl }}>{alt}</span>
+              {answered && isCorrect && <span style={{ marginLeft: "auto", color: C.green }}>✔</span>}
+              {answered && isChosen && !isCorrect && <span style={{ marginLeft: "auto", color: C.red }}>✖</span>}
+            </div>
+          );
+        })}
+        {!answered && <Hint text={item.dica} show={showHint} onToggle={() => setShowHint(!showHint)} />}
+        {answered && <MemoBox>{item.memo}</MemoBox>}
+      </div>
+      <NavRow q={q}>
+        {!answered ? (
+          <button style={S.btn} onClick={confirm} disabled={chosen == null}>Confirmar</button>
+        ) : (
+          <button style={S.btn} onClick={q.next}>{q.pos < q.order.length - 1 ? "Próxima →" : "Finalizar ✓"}</button>
+        )}
+      </NavRow>
+    </div>
+  );
+}
+
+/* ---------- CERTO OU ERRADO ---------- */
+function CertoErrado() {
+  const q = useQuiz(CERTO_ERRADO.length, "ce");
+  const [showHint, setShowHint] = useState(false);
+  useEffect(() => { setShowHint(false); }, [q.idx, q.finished]);
+  if (q.finished) return <div><h1 style={S.h1}>⚖️ Certo ou Errado</h1><FinalCard q={q} resultsAll={loadStore("ce:res", {})} scored /></div>;
+  const item = CERTO_ERRADO[q.idx];
+  const answered = q.cur.answered;
+  const chosen = q.cur.user; // true/false
+  const just = q.cur.just || "";
+  function confirm() {
+    if (chosen == null) return;
+    q.record({ answered: true, correct: chosen === item.correta });
+  }
+  return (
+    <div>
+      <h1 style={S.h1}>⚖️ Certo ou Errado</h1>
+      <Counter pos={q.pos} total={q.order.length} />
+      <Bar done={q.answeredCount} total={CERTO_ERRADO.length} />
+      <div style={S.card}>
+        <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 12 }}>{item.p}</div>
+        <div>
+          {[["Certo", true], ["Errado", false]].map(([lab, val]) => {
+            const isChosen = chosen === val;
+            const isCorrect = val === item.correta;
+            let bg = C.card2, bd = C.border;
+            if (answered) { if (isCorrect) { bg = C.greenBg; bd = C.green; } else if (isChosen) { bg = C.redBg; bd = C.red; } }
+            else if (isChosen) { bd = C.gold; bg = "#12345c"; }
+            return (
+              <button key={lab} onClick={() => !answered && q.record({ user: val })}
+                style={{ background: bg, border: "1px solid " + bd, color: C.text, borderRadius: 10, padding: "11px 20px", marginRight: 10, fontWeight: 700, cursor: answered ? "default" : "pointer" }}>
+                {lab} {answered && isCorrect ? "✔" : ""}{answered && isChosen && !isCorrect ? "✖" : ""}
+              </button>
+            );
+          })}
+        </div>
+        <div style={{ marginTop: 12 }}>
+          <div style={{ ...S.dim, marginBottom: 4 }}>Se julgar ERRADO, justifique / corrija:</div>
+          <textarea style={{ ...S.input, minHeight: 64 }} placeholder="Sua justificativa..." value={just} onChange={(e) => q.record({ just: e.target.value })} />
+        </div>
+        {!answered && <Hint text={"Analise se a afirmação bate exatamente com a norma."} show={showHint} onToggle={() => setShowHint(!showHint)} />}
+        {answered && (
+          <div>
+            <GabaritoBox label={"GABARITO: " + (item.correta ? "CERTO" : "ERRADO")}>{item.memo}</GabaritoBox>
+            <MemoBox>{item.memo}</MemoBox>
+          </div>
+        )}
+      </div>
+      <NavRow q={q}>
+        {!answered ? (
+          <button style={S.btn} onClick={confirm} disabled={chosen == null}>Confirmar</button>
+        ) : (
+          <button style={S.btn} onClick={q.next}>{q.pos < q.order.length - 1 ? "Próxima →" : "Finalizar ✓"}</button>
+        )}
+      </NavRow>
+    </div>
+  );
+}
+
+/* ---------- V ou F (por itens) ---------- */
+function VouF() {
+  const q = useQuiz(VOUF.length, "vf");
+  const [showHint, setShowHint] = useState(false);
+  useEffect(() => { setShowHint(false); }, [q.idx, q.finished]);
+  if (q.finished) return <div><h1 style={S.h1}>✔️ Verdadeiro ou Falso</h1><FinalCard q={q} resultsAll={loadStore("vf:res", {})} scored /></div>;
+  const item = VOUF[q.idx];
+  const answered = q.cur.answered;
+  const marks = q.cur.marks || {}; // itemIndex -> true/false
+  function setMark(i, v) { if (!answered) q.record({ marks: { ...marks, [i]: v } }); }
+  function confirm() {
+    const allDone = item.itens.every((_, i) => marks[i] != null);
+    if (!allDone) return;
+    const correct = item.itens.every((it, i) => marks[i] === it.v);
+    q.record({ answered: true, correct });
+  }
+  return (
+    <div>
+      <h1 style={S.h1}>✔️ Verdadeiro ou Falso</h1>
+      <Counter pos={q.pos} total={q.order.length} extra={item.titulo} />
+      <Bar done={q.answeredCount} total={VOUF.length} />
+      <div style={S.card}>
+        {item.itens.map((it, i) => {
+          const chosen = marks[i];
+          const ok = it.v;
+          return (
+            <div key={i} style={{ padding: "10px 0", borderBottom: i < item.itens.length - 1 ? "1px solid " + C.border : "none" }}>
+              <div style={{ display: "flex", gap: 8, marginBottom: 6 }}>
+                {["V", "F"].map((L) => {
+                  const val = L === "V";
+                  const isC = chosen === val;
+                  let bg = C.card2, bd = C.border;
+                  if (answered) { if (val === ok) { bg = C.greenBg; bd = C.green; } else if (isC) { bg = C.redBg; bd = C.red; } }
+                  else if (isC) { bd = C.gold; bg = "#12345c"; }
+                  return <button key={L} onClick={() => setMark(i, val)} style={{ background: bg, border: "1px solid " + bd, color: C.text, borderRadius: 8, width: 42, padding: "6px 0", fontWeight: 800, cursor: answered ? "default" : "pointer" }}>{L}</button>;
+                })}
+                <span style={{ fontSize: 14.5, color: C.text, alignSelf: "center" }}>{it.t}</span>
+              </div>
+              {answered && <span style={{ ...S.dim, color: chosen === ok ? C.green : C.red }}>{chosen === ok ? "✔ correto" : "✖ correto é " + (ok ? "V" : "F")}</span>}
+            </div>
+          );
+        })}
+        {!answered && <Hint text="Marque V ou F em cada item antes de confirmar." show={showHint} onToggle={() => setShowHint(!showHint)} />}
+        {answered && <MemoBox>{item.memo}</MemoBox>}
+      </div>
+      <NavRow q={q}>
+        {!answered ? (
+          <button style={S.btn} onClick={confirm}>Confirmar</button>
+        ) : (
+          <button style={S.btn} onClick={q.next}>{q.pos < q.order.length - 1 ? "Próxima →" : "Finalizar ✓"}</button>
+        )}
+      </NavRow>
+    </div>
+  );
+}
+
+/* ---------- COMPLETE AS LACUNAS ---------- */
+function Lacunas() {
+  const q = useQuiz(LACUNAS.length, "lac");
+  const [showHint, setShowHint] = useState(false);
+  useEffect(() => { setShowHint(false); }, [q.idx, q.finished]);
+  if (q.finished) return <div><h1 style={S.h1}>✏️ Complete as Lacunas</h1><FinalCard q={q} resultsAll={loadStore("lac:res", {})} scored /></div>;
+  const item = LACUNAS[q.idx];
+  const answered = q.cur.answered;
+  const inputs = q.cur.inputs || item.respostas.map(() => "");
+  const partes = item.texto.split("___");
+  function setInput(i, v) { if (!answered) q.record({ inputs: inputs.map((x, k) => (k === i ? v : x)) }); }
+  function norm(s) { return (s || "").trim().toLowerCase().replace(/\.$/, ""); }
+  function confirm() {
+    const correct = item.respostas.every((r, i) => norm(inputs[i]) === norm(r));
+    q.record({ answered: true, correct });
+  }
+  return (
+    <div>
+      <h1 style={S.h1}>✏️ Complete as Lacunas</h1>
+      <Counter pos={q.pos} total={q.order.length} />
+      <Bar done={q.answeredCount} total={LACUNAS.length} />
+      <div style={S.card}>
+        <div style={{ fontSize: 16, lineHeight: 2, marginBottom: 8 }}>
+          {partes.map((seg, i) => (
+            <span key={i}>
+              {seg}
+              {i < item.respostas.length && (
+                <input value={inputs[i]} onChange={(e) => setInput(i, e.target.value)} disabled={answered}
+                  style={{ ...S.input, display: "inline-block", width: 130, padding: "4px 8px", margin: "0 4px",
+                    borderColor: answered ? (norm(inputs[i]) === norm(item.respostas[i]) ? C.green : C.red) : C.gold }} />
+              )}
+            </span>
+          ))}
+        </div>
+        {!answered && <Hint text={"São " + item.respostas.length + " lacuna(s)."} show={showHint} onToggle={() => setShowHint(!showHint)} />}
+        {answered && (
+          <div>
+            <GabaritoBox label="GABARITO">{item.respostas.join(" · ")}</GabaritoBox>
+            <MemoBox>{item.memo}</MemoBox>
+          </div>
+        )}
+      </div>
+      <NavRow q={q}>
+        {!answered ? <button style={S.btn} onClick={confirm}>Confirmar</button>
+          : <button style={S.btn} onClick={q.next}>{q.pos < q.order.length - 1 ? "Próxima →" : "Finalizar ✓"}</button>}
+      </NavRow>
+    </div>
+  );
+}
+
+/* ---------- CORRELACIONE ---------- */
+function Correlacione() {
+  const q = useQuiz(CORRELACIONE.length, "cor");
+  const [showHint, setShowHint] = useState(false);
+  const [sel, setSel] = useState(null);
+  useEffect(() => { setShowHint(false); setSel(null); }, [q.idx, q.finished]);
+  if (q.finished) return <div><h1 style={S.h1}>🔗 Correlacione</h1><FinalCard q={q} resultsAll={loadStore("cor:res", {})} scored /></div>;
+  const item = CORRELACIONE[q.idx];
+  const answered = q.cur.answered;
+  // map: rightIndex -> leftNumber (1-based) OR "-"
+  const map = q.cur.map || {};
+  function assign(rightIdx) {
+    if (answered || sel == null) return;
+    const nm = { ...map };
+    Object.keys(nm).forEach((k) => { if (nm[k] === sel + 1) delete nm[k]; });
+    nm[rightIdx] = sel + 1;
+    q.record({ map: nm });
+    setSel(null);
+  }
+  function confirm() {
+    // correct if for each left i, the right index gabarito[i] has value i+1, and false answer stays unassigned or "-"
+    let correct = true;
+    item.esquerda.forEach((_, i) => {
+      const rightIdx = item.gabarito[i];
+      if (map[rightIdx] !== i + 1) correct = false;
+    });
+    q.record({ answered: true, correct });
+  }
+  const falseIndexes = item.direita.map((_, i) => i).filter((i) => !item.gabarito.includes(i));
+  return (
+    <div>
+      <h1 style={S.h1}>🔗 Correlacione</h1>
+      <Counter pos={q.pos} total={q.order.length} extra={item.titulo} />
+      <Bar done={q.answeredCount} total={CORRELACIONE.length} />
+      <div style={S.card}>
+        <div style={{ ...S.dim, marginBottom: 8 }}>Toque num item numerado à esquerda e depois na resposta à direita. Uma resposta é FALSA (fica como "-").</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 12 }}>
+          <div>
+            {item.esquerda.map((e, i) => (
+              <div key={i} onClick={() => !answered && setSel(i)}
+                style={{ background: sel === i ? "#12345c" : C.card2, border: "1px solid " + (sel === i ? C.gold : C.border), borderRadius: 8, padding: "9px 10px", marginBottom: 8, cursor: answered ? "default" : "pointer", display: "flex", gap: 8 }}>
+                <b style={{ color: C.gold }}>{i + 1}</b><span style={{ fontSize: 14 }}>{e}</span>
+              </div>
+            ))}
+          </div>
+          <div>
+            {item.direita.map((d, ri) => {
+              const val = map[ri];
+              const isFalse = falseIndexes.includes(ri);
+              let bd = C.border, bg = C.card2;
+              if (answered) {
+                const correctNum = item.gabarito.indexOf(ri); // left index that should map here
+                if (correctNum >= 0) { if (val === correctNum + 1) { bg = C.greenBg; bd = C.green; } else { bg = C.redBg; bd = C.red; } }
+                else { if (val) { bg = C.redBg; bd = C.red; } }
+              } else if (val) { bd = C.gold; }
+              return (
+                <div key={ri} onClick={() => assign(ri)}
+                  style={{ background: bg, border: "1px solid " + bd, borderRadius: 8, padding: "9px 10px", marginBottom: 8, cursor: answered ? "default" : "pointer", display: "flex", gap: 8, alignItems: "center" }}>
+                  <b style={{ color: val ? C.gold : C.dim, minWidth: 16 }}>{answered && isFalse ? "-" : (val || "?")}</b>
+                  <span style={{ fontSize: 14 }}>{d}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        {!answered && <Hint text={"O correto na coluna da direita é o número correspondente à esquerda; a resposta falsa recebe \"-\"."} show={showHint} onToggle={() => setShowHint(!showHint)} />}
+        {answered && (
+          <div>
+            <GabaritoBox label="GABARITO">
+              {item.esquerda.map((e, i) => <div key={i}>{i + 1} → {item.direita[item.gabarito[i]]}</div>)}
+              <div style={{ color: C.dim, marginTop: 4 }}>Falsa (-): {item.direita[falseIndexes[0]]}</div>
+            </GabaritoBox>
+            <MemoBox>{item.memo}</MemoBox>
+          </div>
+        )}
+      </div>
+      <NavRow q={q}>
+        {!answered ? <button style={S.btn} onClick={confirm}>Confirmar</button>
+          : <button style={S.btn} onClick={q.next}>{q.pos < q.order.length - 1 ? "Próximo →" : "Finalizar ✓"}</button>}
+      </NavRow>
+    </div>
+  );
+}
+
+/* ---------- ESCRITA (Definições / Cite / Liste / Complete) ---------- */
+function EscritaQuiz({ titulo, storeKey, items, renderGabarito, promptOf }) {
+  const q = useQuiz(items.length, storeKey);
+  const [showHint, setShowHint] = useState(false);
+  useEffect(() => { setShowHint(false); }, [q.idx, q.finished]);
+  if (q.finished) return <div><h1 style={S.h1}>{titulo}</h1><FinalCard q={q} resultsAll={loadStore(storeKey + ":res", {})} scored={false} /></div>;
+  const item = items[q.idx];
+  const answered = q.cur.answered;
+  const text = q.cur.user || "";
+  return (
+    <div>
+      <h1 style={S.h1}>{titulo}</h1>
+      <Counter pos={q.pos} total={q.order.length} />
+      <Bar done={q.answeredCount} total={items.length} />
+      <div style={S.card}>
+        <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 10 }}>{promptOf(item)}</div>
+        <textarea style={{ ...S.input, minHeight: 90 }} placeholder="Escreva sua resposta..." value={text} disabled={answered} onChange={(e) => q.record({ user: e.target.value })} />
+        {!answered && <Hint text={item.dica || "Tente responder de memória antes de conferir."} show={showHint} onToggle={() => setShowHint(!showHint)} />}
+        {answered && (
+          <div>
+            <GabaritoBox label="GABARITO">{renderGabarito(item)}</GabaritoBox>
+            {item.resumo && <GabaritoBox label="GABARITO RESUMIDO" tone="resumo">{item.resumo}</GabaritoBox>}
+            <MemoBox>{item.memo}</MemoBox>
+            {text && <div style={{ ...S.dim, marginTop: 8 }}>Sua resposta: <span style={{ color: C.text }}>{text}</span></div>}
+          </div>
+        )}
+      </div>
+      <NavRow q={q}>
+        {!answered ? <button style={S.btn} onClick={() => q.record({ answered: true })}>Confirmar / Ver gabarito</button>
+          : <button style={S.btn} onClick={q.next}>{q.pos < q.order.length - 1 ? "Próxima →" : "Finalizar ✓"}</button>}
+      </NavRow>
+    </div>
+  );
+}
+
+function Definicoes() {
+  return <EscritaQuiz titulo="📚 Definições" storeKey="def" items={DEFINICOES}
+    promptOf={(it) => "Defina: " + it.termo}
+    renderGabarito={(it) => it.def} />;
+}
+function Complete() {
+  return <EscritaQuiz titulo="🧩 Complete" storeKey="comp" items={COMPLETE}
+    promptOf={(it) => "Complete: " + it.termo}
+    renderGabarito={(it) => it.resposta} />;
+}
+function Cite() {
+  return <EscritaQuiz titulo="📝 Cite" storeKey="cite" items={CITE}
+    promptOf={(it) => it.p}
+    renderGabarito={(it) => <ul style={{ margin: 0, paddingLeft: 18 }}>{it.itens.map((x, i) => <li key={i}>{x}</li>)}</ul>} />;
+}
+function Liste() {
+  return <EscritaQuiz titulo="📋 Liste" storeKey="liste" items={LISTE}
+    promptOf={(it) => it.p}
+    renderGabarito={(it) => <ol style={{ margin: 0, paddingLeft: 18 }}>{it.itens.map((x, i) => <li key={i}>{x}</li>)}</ol>} />;
+}
+
+/* ---------- MNEMÔNICOS ---------- */
+function Mnemonicos() {
+  return (
+    <div>
+      <h1 style={S.h1}>🧠 Mnemônicos & Memorização</h1>
+      <p style={S.dim}>Siglas, rimas, palácio da memória e pegadinhas para fixar o conteúdo.</p>
+      {MNEMONICOS.map((m, i) => (
+        <div key={i} style={S.card}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+            <h3 style={S.h3}>{m.titulo}</h3>
+            <span style={S.chip}>{m.tipo}</span>
+          </div>
+          <p style={{ ...S.p, margin: 0 }}>{m.conteudo}</p>
+        </div>
+      ))}
+      <h2 style={S.h2}>⚠️ Pegadinhas frequentes</h2>
+      <div style={S.card}>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
+          {PEGADINHAS.map((p, i) => <li key={i} style={{ fontSize: 14.5, lineHeight: 1.6, marginBottom: 8, color: C.text }}>{p}</li>)}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+
+/* ==========================================================================
+   APP — navegação, roteamento e montagem
+   ========================================================================== */
+
+const TABS = [
+  ["home", "🏠 Início"],
+  ["superresumo", "⚡ Super Resumo"],
+  ["resumo", "📘 Resumo"],
+  ["mapa", "🧭 Mapa Mental"],
+  ["flashcards", "🎴 Flashcards"],
+  ["consulta", "🔎 Consulta"],
+  ["padrao", "📄 Questões"],
+  ["multipla", "🔘 Múltipla"],
+  ["certo", "⚖️ Certo/Errado"],
+  ["lacunas", "✏️ Lacunas"],
+  ["definicoes", "📚 Definições"],
+  ["correlacione", "🔗 Correlacione"],
+  ["cite", "📝 Cite"],
+  ["liste", "📋 Liste"],
+  ["vouf", "✔️ V ou F"],
+  ["complete", "🧩 Complete"],
+  ["mnemonicos", "🧠 Mnemônicos"],
+];
+
+const VIEWS = {
+  home: Home,
+  superresumo: SuperResumo,
+  resumo: Resumo,
+  mapa: MapaMental,
+  flashcards: Flashcards,
+  consulta: Consulta,
+  padrao: QuestoesPadrao,
+  multipla: Multipla,
+  certo: CertoErrado,
+  lacunas: Lacunas,
+  definicoes: Definicoes,
+  correlacione: Correlacione,
+  cite: Cite,
+  liste: Liste,
+  vouf: VouF,
+  complete: Complete,
+  mnemonicos: Mnemonicos,
+};
+
+function TopNav({ active, go }) {
+  const barRef = useRef(null);
+  return (
+    <div style={{ position: "sticky", top: 0, zIndex: 20, background: C.bg2, borderBottom: "1px solid " + C.border, boxShadow: "0 2px 12px rgba(0,0,0,.35)" }}>
+      <div style={{ maxWidth: 920, margin: "0 auto", display: "flex", alignItems: "center", gap: 10, padding: "8px 12px" }}>
+        <div onClick={() => go("home")} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", flexShrink: 0 }}>
+          <div style={{ width: 32, height: 32, borderRadius: 8, background: C.bg, border: "1.5px solid " + C.gold, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, color: C.goldSoft, fontSize: 12 }}>TFM</div>
+          <b style={{ color: C.text, fontSize: 14, whiteSpace: "nowrap" }}>CGCFN-108</b>
+        </div>
+      </div>
+      <div ref={barRef} style={{ maxWidth: 920, margin: "0 auto", display: "flex", gap: 6, overflowX: "auto", padding: "0 12px 10px", WebkitOverflowScrolling: "touch" }}>
+        {TABS.map(([id, label]) => {
+          const on = active === id;
+          return (
+            <button key={id} onClick={() => go(id)}
+              style={{ flexShrink: 0, background: on ? C.gold : C.card2, color: on ? "#20180a" : C.dim, border: "1px solid " + (on ? C.gold : C.border), borderRadius: 20, padding: "7px 14px", fontSize: 13, fontWeight: on ? 800 : 600, cursor: "pointer", whiteSpace: "nowrap" }}>
+              {label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [active, setActive] = usePersist("ui:tab", "home");
+  const topRef = useRef(null);
+  function go(id) {
+    setActive(id);
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  const View = VIEWS[active] || Home;
+  return (
+    <div style={S.page}>
+      <TopNav active={active} go={go} />
+      <div ref={topRef} style={{ ...S.container, paddingTop: 18 }}>
+        {active === "home" ? <Home go={go} /> : <View go={go} />}
+      </div>
+      <div style={{ textAlign: "center", color: C.dim, fontSize: 12, padding: "20px 16px 40px" }}>
+        Estudos TFM — CGCFN-108 · conteúdo do próprio material · progresso salvo no aparelho
+      </div>
+    </div>
+  );
+}
+
+const _root = ReactDOM.createRoot(document.getElementById("root"));
+_root.render(<App />);
+
+  </script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/TFM-CFN-2026/sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>
